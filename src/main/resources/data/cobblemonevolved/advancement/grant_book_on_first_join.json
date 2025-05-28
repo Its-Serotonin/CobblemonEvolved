@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "first_join": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:player"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "first_join"
+    ]
+  ],
+  "rewards": {
+    "loot": [
+      "cobblemonevolved:grant_book_on_first_join"
+    ]
+  }
+}

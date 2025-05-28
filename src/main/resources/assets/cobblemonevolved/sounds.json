@@ -1,0 +1,44 @@
+{
+  "gui.competitive.open": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/open", "stream": false }]
+  },
+  "gui.competitive.close": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/close", "stream": false }]
+  },
+  "gui.competitive.friendly_on": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/friendly_on", "stream": false }]
+  },
+  "gui.competitive.friendly_off": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/friendly_off", "stream": false }]
+  },
+  "gui.competitive.reward_claimed": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/reward_claimed", "stream": false }]
+  },
+  "gui.competitive.reward_already_claimed": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/reward_already_claimed", "stream": false }]
+  },
+  "gui.competitive.tournament_signup": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/tournament_signup", "stream": false }]
+  },
+  "gui.competitive.tournament_signout": {
+    "sounds": [{ "name": "cobblemonevolved:gui/competitivehandbook/tournament_signout", "stream": false }]
+  },
+  "gui.saveslots.save_slot_open": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/save_slot_open", "stream": false }]
+  },
+  "gui.saveslots.save_slot_close": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/save_slot_close", "stream": false }]
+  },
+  "gui.saveslots.save_load_slot": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/save_load_slot", "stream": false }]
+  },
+  "gui.saveslots.confirm_delete": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/confirm_delete", "stream": false }]
+  },
+  "gui.saveslots.delete_slot_popup": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/delete_slot_popup", "stream": false }]
+  },
+  "gui.saveslots.switch_slots_popup": {
+    "sounds": [{ "name": "cobblemonevolved:gui/saveslots/switch_slots_popup", "stream": false }]
+  }
+}

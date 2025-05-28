@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:advancement_reward",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemonevolved:competitive_handbook",
+          "conditions": [
+
+            {
+              "condition": "cobblemonevolved:has_no_handbook"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "functions": []
+}

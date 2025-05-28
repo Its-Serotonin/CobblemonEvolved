@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cobblemon_evolved_items",
+  "category": "misc",
+  "pattern": [
+    "ICI",
+    "QDI",
+    "ICI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "id": "cobblemonevolved:metal_alloy",
+    "count": 1
+  }
+}

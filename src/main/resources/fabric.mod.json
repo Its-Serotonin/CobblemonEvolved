@@ -1,0 +1,58 @@
+{
+	"schemaVersion": 1,
+	"id": "cobblemonevolved",
+	"version": "${version}",
+	"name": "Cobblemon Evolved",
+	"description": "It works!",
+	"authors": [
+		"Serotonin"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/cobblemonevolved/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.serotonin.Cobblemonevolved",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.serotonin.CobblemonevolvedDataGenerator",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			"com.serotonin.CobblemonevolvedClient"
+		],
+		"wthit:plugin": [
+			 {
+				 "value": "com.serotonin.WTHITPlugin",
+				 "adapter": "kotlin"
+				}
+		]
+	},
+	"mixins": [
+		"mixin.backpackfix.json",
+		"mixin.cobblemerchants.json",
+		"mixin.mythsandlegends.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "0.116.0+1.21.1",
+		"fabric-language-kotlin": "*",
+		"cobblemon": "1.6.1+1.21.1",
+		"trinkets": ">=3.10.0",
+		"sophisticatedbackpacks": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

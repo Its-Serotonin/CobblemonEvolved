@@ -1,0 +1,150 @@
+{
+  "defaultShop": [
+    {
+      "Public": {
+        "requiredTier": 0,
+        "offers": [
+          { "item": "cobblemon:poke_ball", "price": 250 },
+          { "item": "cobblemon:great_ball", "price": 450 },
+          { "item": "cobblemon:potion", "price": 300 },
+          { "item": "cobblemon:oran_berry", "price": 200 },
+          { "item": "minecraft:iron_ingot", "price": 300 },
+          { "item": "minecraft:gold_ingot", "price": 600 },
+          { "item": "minecraft:bread", "price": 70 },
+          { "item": "minecraft:book", "price": 500 },
+          { "item": "minecraft:amethyst_shard", "price": 750 }
+        ]
+      }
+    },
+    {
+      "GreatBall": {
+        "requiredTier": 1,
+        "offers": [
+          { "item": "cobblemon:ultra_ball", "price": 1200 },
+          { "item": "cobblemon:super_potion", "price": 800 },
+          { "item": "cobblemon:hyper_potion", "price": 1350 },
+          { "item": "cobblemon:revive", "price": 1200 },
+          { "item": "minecraft:diamond", "price": 1500 }
+        ]
+      }
+    },
+    {
+      "UltraBall": {
+        "requiredTier": 2,
+        "offers": [
+          { "item": "cobblemon_utility:hpsilvercap", "price": 5000 },
+          { "item": "cobblemon_utility:atksilvercap", "price": 5000 },
+          { "item": "cobblemon_utility:defsilvercap", "price": 5000 },
+          { "item": "cobblemon_utility:spatksilvercap", "price": 5000 },
+          { "item": "cobblemon_utility:spdefsilvercap", "price": 5000 },
+          { "item": "cobblemon_utility:speedsilvercap", "price": 5000 },
+          { "item": "cobblemon:max_revive", "price": 2000 },
+          { "item": "cobblemon:max_potion", "price": 2500 },
+          { "item": "cobblemon:pp_up", "price": 1300 },
+          { "item": "cobblemon:pp_max", "price": 3200 }
+        ]
+      }
+    },
+    {
+      "MasterBall": {
+        "requiredTier": 3,
+        "offers": [
+          { "item": "cobblemon:master_ball", "price": 100000 },
+          { "item": "cobblemon:hp_up", "price": 10000 },
+          { "item": "cobblemon:protein", "price": 10000 },
+          { "item": "cobblemon:iron", "price": 10000 },
+          { "item": "cobblemon:calcium", "price": 10000 },
+          { "item": "cobblemon:zinc", "price": 10000 },
+          { "item": "cobblemon:carbos", "price": 10000 },
+          { "item": "cobblemon:rare_candy", "price": 25000 },
+          { "item": "cobblemon:ability_capsule", "price": 7500 },
+          { "item": "cobblemon:ability_patch", "price": 7500 },
+          { "item": "cobblemon:ability_shield", "price": 7500 },
+          { "item": "mega_showdown:keystone", "price": 50000 },
+          { "item": "mega_showdown:mega_stone", "price": 25000 },
+          { "item": "cobblemon:normal_gem", "price": 7000 },
+          { "item": "cobblemon:fire_gem", "price": 7000 },
+          { "item": "cobblemon:water_gem", "price": 7000 },
+          { "item": "cobblemon:grass_gem", "price": 7000 },
+          { "item": "cobblemon:electric_gem", "price": 7000 },
+          { "item": "cobblemon:ice_gem", "price": 7000 },
+          { "item": "cobblemon:fighting_gem", "price": 7000 },
+          { "item": "cobblemon:poison_gem", "price": 7000 },
+          { "item": "cobblemon:ground_gem", "price": 7000 },
+          { "item": "cobblemon:flying_gem", "price": 7000 },
+          { "item": "cobblemon:psychic_gem", "price": 7000 },
+          { "item": "cobblemon:bug_gem", "price": 7000 },
+          { "item": "cobblemon:rock_gem", "price": 7000 },
+          { "item": "cobblemon:ghost_gem", "price": 7000 },
+          { "item": "cobblemon:dragon_gem", "price": 7000 },
+          { "item": "cobblemon:dark_gem", "price": 7000 },
+          { "item": "cobblemon:steel_gem", "price": 7000 },
+          { "item": "cobblemon:fairy_gem", "price": 7000 }
+        ]
+      }
+    },
+    {
+      "PseudoLegendary": {
+        "requiredTier": 4,
+        "offers": [
+          { "item": "mega_showdown:bug_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:dark_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:dragon_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:electric_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:fairy_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:fighting_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:fire_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:flying_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:ghost_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:grass_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:ground_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:ice_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:normal_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:poison_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:psychic_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:rock_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:steel_tera_shard", "price": 3000 },
+            { "item": "mega_showdown:water_tera_shard", "price": 3000 },
+          { "item": "mega_showdown:stellar_tera_shard", "price": 5000 },
+          { "item": "cobblemon:red_mint_seeds", "price": 10000 },
+          { "item": "cobblemon:blue_mint_seeds", "price": 10000 },
+          { "item": "cobblemon:cyan_mint_seeds", "price": 10000 },
+          { "item": "cobblemon:pink_mint_seeds", "price": 10000 },
+          { "item": "cobblemon:green_mint_seeds", "price": 10000 }
+        ]
+      }
+    },
+    {
+      "Legendary": {
+        "requiredTier": 5,
+        "offers": [
+          { "item": "simpletms:tm_protect", "price": 30000 },
+          { "item": "simpletms:tm_fakeout", "price": 30000 }
+        ]
+      }
+    },
+    {
+      "Mythical": {
+        "requiredTier": 6,
+        "offers": [
+          { "item": "cobgyms:legendary_shard", "price": 40000 }
+        ]
+      }
+    },
+    {
+      "UltraBeast": {
+        "requiredTier": 7,
+        "offers": [
+          { "item": "cobblemon:beast_ball", "price": 75000 },
+          { "item": "cobblemon_utility:goldencap", "price": 150000 },
+          { "item": "cobblemon_utility:cobblemax", "price": 1000000 },
+          { "item": "cobblemon_utility:cobblemin", "price": 1000000 },
+          { "item": "cobblemon_utility:voidcap", "price": 500000 },
+          { "item": "cobblemon_utility:voidfeather", "price": 500000 },
+          { "item": "cobblemon_utility:shinycard", "price": 2000000 },
+          { "item": "cobblemon:white_mint_seeds", "price": 40000 }
+        ]
+      }
+    }
+  ]
+}

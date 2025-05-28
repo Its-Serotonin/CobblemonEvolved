@@ -1,0 +1,9 @@
+{
+  "animation": {
+    "frametime": 1
+  },
+    "texture": {
+      "filter": "nearest"
+    },
+  "mipmap": false
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:plains",
+    "#cobblemon:is_temperate",
+    "#cobblemon:is_forest",
+    "#cobblemon:is_jungle",
+    "#cobblemon:is_plains",
+    "#cobblemon:is_magical"
+  ]
+}

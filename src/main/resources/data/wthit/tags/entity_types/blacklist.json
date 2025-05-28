@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#waila:blacklist",
+    "cobblemonevolved:custom_player_name_tag_rank",
+    "cobblemonevolved:custom_ranked_player_name_tag"
+  ]
+}

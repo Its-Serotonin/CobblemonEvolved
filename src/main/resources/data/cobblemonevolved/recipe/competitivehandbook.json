@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobblemon_evolved_items",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cobblemon:poke_ball"
+    },
+    {
+      "item": "minecraft:book"
+    }
+  ],
+  "result": {
+    "id": "cobblemonevolved:competitive_handbook",
+    "count": 1
+  }
+}

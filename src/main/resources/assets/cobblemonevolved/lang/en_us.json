@@ -1,0 +1,17 @@
+{
+  "item.cobblemonevolved.competitive_handbook": "Competitive Handbook",
+  "item.cobblemonevolved.beads_of_ruin": "Beads of Ruin",
+  "item.cobblemonevolved.metal_alloy": "Metal Alloy",
+
+  "itemgroup.cobblemonevolved.cobblemon_evolved_items": "CE Items",
+
+  "tooltip.cobblemonevolved.competitive_handbook": "The guide to Cobblemon competition",
+  "tooltip.cobblemonevolved.beads_of_ruin": "A strange noise can be heard from afar..",
+  "tooltip.cobblemonevolved.metal_alloy": "Evolves Duraludon into Archaludon when held",
+
+  "key.cobblemonevolved.open_save_slots": "Open Save Slots",
+  "category.cobblemonevolved": "Cobblemon Evolved",
+
+  "structure.cobblemonevolved.chiyu_shrine": "Chiyu Shrine"
+
+}

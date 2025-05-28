@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "com.serotonin.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BuyHandlerMixin",
+    "CobbleMerchantBankMixin",
+    "CobbleMerchantMixin",
+    "NPCPlayerTextureSerializerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "BuyButtonRedirectMixin",
+    "CategoryEntryAccessor",
+    "CategoryEntryMixin"
+  ]
+}
+
+
