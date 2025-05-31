@@ -1,6 +1,5 @@
 package com.serotonin.common.registries
 
-import net.minecraft.client.sound.Sound
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.sound.SoundEvent

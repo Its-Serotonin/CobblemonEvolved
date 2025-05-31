@@ -4,7 +4,6 @@ package com.serotonin.common.saveslots
 
 
 import com.zaxxer.hikari.HikariDataSource
-import java.sql.*
 import java.util.*
 
 class SaveSlotDAOImpl(private val dataSource: HikariDataSource) : SaveSlotDAO {

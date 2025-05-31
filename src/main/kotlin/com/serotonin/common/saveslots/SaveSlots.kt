@@ -1,32 +1,25 @@
 package com.serotonin.common.saveslots
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore
 import com.cobblemon.mod.common.api.storage.party.PartyPosition
-import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.*
-import net.minecraft.server.network.ServerPlayerEntity
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.util.*
-import net.minecraft.registry.RegistryWrapper
-import net.minecraft.registry.DynamicRegistryManager
-import net.minecraft.registry.RegistryKeys
-import net.minecraft.nbt.NbtCompound
 import com.cobblemon.mod.common.api.storage.pc.PCStore
-import com.cobblemon.mod.common.api.storage.pc.PCBox
-import com.cobblemon.mod.common.api.storage.pc.PCPosition
+import com.cobblemon.mod.common.pokemon.Pokemon
+import dev.emi.trinkets.api.TrinketsApi
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.ItemEntity
+import net.minecraft.item.ItemStack
+import net.minecraft.nbt.*
+import net.minecraft.registry.DynamicRegistryManager
+import net.minecraft.registry.Registries
+import net.minecraft.registry.RegistryWrapper
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.math.Box
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.util.*
-import dev.emi.trinkets.api.TrinketsApi
-import dev.emi.trinkets.api.SlotReference
-import net.minecraft.registry.Registries
 
 
 data class PlayerSaveSlot(

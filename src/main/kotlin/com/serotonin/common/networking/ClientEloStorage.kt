@@ -1,6 +1,5 @@
 package com.serotonin.common.networking
 
-import java.util.UUID
 
 
 object ClientEloStorage {

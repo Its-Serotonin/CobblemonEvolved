@@ -3,7 +3,6 @@ package com.serotonin.common.client.gui.competitivehandbook.widgets
 
 
 import com.serotonin.common.registries.SoundRegistry
-import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.text.Text
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext

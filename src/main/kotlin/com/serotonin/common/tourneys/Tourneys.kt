@@ -4,9 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.arguments.StringArgumentType.greedyString
 import com.mojang.brigadier.arguments.StringArgumentType.word
-import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.suggestion.SuggestionProvider
-import com.mojang.brigadier.suggestion.SuggestionsBuilder
 import com.serotonin.common.chat.withCooldownCheck
 import com.serotonin.common.networking.Database
 import com.serotonin.common.networking.RawJsonPayload
@@ -15,18 +13,21 @@ import com.serotonin.common.tourneys.TeamValidator.getPlayerTeamData
 import com.serotonin.common.tourneys.TeamValidator.validateTeamWithAPI
 import com.serotonin.common.tourneys.TournamentManager.getActiveTournament
 import com.serotonin.common.tourneys.TournamentManager.isPlayerSignedUp
-import com.serotonin.common.tourneys.TournamentManager.isTournamentActive
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
-import net.minecraft.server.command.CommandManager.*
+import net.minecraft.server.command.CommandManager.argument
+import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-import java.time.*
+import java.time.Duration
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.concurrent.thread
@@ -35,12 +36,6 @@ import kotlin.concurrent.thread
 object TournamentManager {
     data class Tournament(val id: UUID, val ruleset: String, val startTime: Instant)
 
-    /*val FORMAT_SUGGESTIONS =
-        SuggestionProvider<ServerCommandSource> { _: CommandContext<ServerCommandSource>, builder: SuggestionsBuilder ->
-            val filters = listOf("vgc", "gen9", "gen8", "ubers", "ou", "doubles")
-            filters.forEach { builder.suggest(it) }
-            builder.buildFuture()
-        }*/
 
     val DYNAMIC_FORMAT_SUGGESTIONS = SuggestionProvider<ServerCommandSource> { context, builder ->
         val input = builder.remainingLowerCase

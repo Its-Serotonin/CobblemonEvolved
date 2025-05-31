@@ -1,35 +1,16 @@
 package com.serotonin.common.elosystem
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.moves.Move
-import com.cobblemon.mod.common.api.moves.MoveTemplate
 import com.cobblemon.mod.common.api.moves.Moves
-import com.cobblemon.mod.relocations.oracle.truffle.api.instrumentation.Tag
 import com.gmail.brendonlf.cobblemon_utility.Item.UtilityItems
 import com.serotonin.common.networking.Database
 import dragomordor.simpletms.SimpleTMsItems
-import dragomordor.simpletms.fabric.SimpleTMs
-import dragomordor.simpletms.item.SimpleTMsItem
-import dragomordor.simpletms.item.group.SimpleTMsItemGroups
-import dragomordor.simpletms.util.MoveAssociations
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonPrimitive
-import net.gensir.cobgyms.CobGyms
-import net.gensir.cobgyms.fabric.CobGymsFabric
-import net.gensir.cobgyms.item.custom.GymCacheItem
-import net.gensir.cobgyms.item.custom.GymKeyItem
-import net.gensir.cobgyms.util.GymUtils
+import net.gensir.cobgyms.registry.ModItemRegistry
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.registry.Registries
-import net.minecraft.text.Text
 import net.minecraft.util.Identifier
-import java.util.UUID
-import net.gensir.cobgyms.registry.ModItemRegistry
+import java.util.*
 
 data class TierReward(
     val id: String,
@@ -324,13 +305,13 @@ fun buildMoveItemSafe(moveName: String, preferTR: Boolean = true): ItemStack {
     return try {
         val move = getMoveByName(moveName)
         if (!SimpleTMsItems.hasItemForMove(move.template, preferTR)) {
-            println("⚠️ No ${if (preferTR) "TR" else "TM"} found for $moveName")
+            println("No ${if (preferTR) "TR" else "TM"} found for $moveName")
             ItemStack(Items.BARRIER)
         } else {
             ItemStack(SimpleTMsItems.getTMorTRItemFromMove(move, preferTR), 1)
         }
     } catch (e: Exception) {
-        println("⚠️ buildMoveItemSafe($moveName) failed: ${e.message}")
+        println("buildMoveItemSafe($moveName) failed: ${e.message}")
         ItemStack(Items.BARRIER)
     }
 }
@@ -338,10 +319,10 @@ fun buildMoveItemSafe(moveName: String, preferTR: Boolean = true): ItemStack {
 
 fun buildProtectItemSafe(): ItemStack {
     return try {
-        buildProtectItem() // the real one, only safe on server
+        buildProtectItem()
     } catch (e: Exception) {
-        println("⚠️ buildProtectItemSafe failed: ${e.message}")
-        ItemStack(Items.BARRIER) // some placeholder or nothing
+        println("buildProtectItemSafe failed: ${e.message}")
+        ItemStack(Items.BARRIER)
     }
 }
 fun buildProtectItem(): ItemStack {

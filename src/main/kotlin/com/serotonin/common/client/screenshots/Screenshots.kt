@@ -4,8 +4,6 @@ package com.serotonin.common.client.screenshots
 
 import com.serotonin.common.client.gui.saveslots.SaveSlotScreen
 import com.serotonin.common.client.screenshots.ScreenshotHelper.captureAndSaveScreenshot
-import com.serotonin.common.networking.PlayerDataSyncNetworkingClient
-import com.serotonin.common.networking.SaveSlotRequestPayload
 import com.serotonin.common.saveslots.ClientSaveSlotCache
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.texture.NativeImage
@@ -16,7 +14,6 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import java.io.File
 import javax.imageio.ImageIO
-import kotlin.math.abs
 
 object ScreenshotHelper {
 
@@ -40,8 +37,6 @@ object ScreenshotHelper {
         val height = framebuffer.textureHeight
 
         val buffer = BufferUtils.createByteBuffer(width * height * 4)
-
-        println("📸 Capturing screenshot for slot $slot at $timestamp (framebuffer: ${width}x$height)")
 
         GL11.glReadPixels(0, 0, width, height, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer)
 
@@ -84,8 +79,6 @@ object ScreenshotHelper {
         val timestamp = System.currentTimeMillis()
         val filename = "save_slot_${slot}_$timestamp.png"
         val outputDir = File(MinecraftClient.getInstance().runDirectory, "screenshots/saveslots")
-
-        println("💾 Screenshot output directory: ${outputDir.absolutePath}")
 
         outputDir.mkdirs()
         val outputFile = File(outputDir, filename)
@@ -172,6 +165,40 @@ fun cleanupTempScreenshots() {
     dir.listFiles { it.name.startsWith("temp_") && it.name.endsWith(".png") }?.forEach { it.delete() }
 }
 
+fun cleanupUnusedScreenshots(usedPaths: Set<String>) {
+    val screenshotDir = File(MinecraftClient.getInstance().runDirectory, "screenshots/saveslots")
+    if (!screenshotDir.exists()) return
+
+    val usedCanonicalPaths = usedPaths.mapNotNull { path ->
+        try {
+            File(MinecraftClient.getInstance().runDirectory, path).canonicalPath
+        } catch (e: Exception) {
+            null
+        }
+    }.toSet()
+
+    screenshotDir.listFiles { it.name.endsWith(".png") }?.forEach { file ->
+        try {
+            if (file.canonicalPath !in usedCanonicalPaths) {
+                println("Deleting unused screenshot: ${file.name}")
+                file.delete()
+            }
+        } catch (e: Exception) {
+            println("Failed to process screenshot file: ${file.name}")
+        }
+    }
+}
+
+fun extractTimestamp(fileName: String): Long {
+    val name = fileName.removePrefix("save_slot_").removeSuffix(".png")
+    val underscoreIndex = name.indexOf('_')
+    return if (underscoreIndex != -1) {
+        name.substring(underscoreIndex + 1).toLongOrNull() ?: 0L
+    } else 0L
+}
+
+/*
+
 fun cleanupUnusedScreenshots(usedSlots: Set<Int>) {
     val screenshotDir = File(MinecraftClient.getInstance().runDirectory, "screenshots/saveslots")
     if (!screenshotDir.exists()) return
@@ -201,11 +228,4 @@ fun cleanupUnusedScreenshots(usedSlots: Set<Int>) {
         }
     }
 }
-
-fun extractTimestamp(fileName: String): Long {
-    val name = fileName.removePrefix("save_slot_").removeSuffix(".png")
-    val underscoreIndex = name.indexOf('_')
-    return if (underscoreIndex != -1) {
-        name.substring(underscoreIndex + 1).toLongOrNull() ?: 0L
-    } else 0L
-}
+ */

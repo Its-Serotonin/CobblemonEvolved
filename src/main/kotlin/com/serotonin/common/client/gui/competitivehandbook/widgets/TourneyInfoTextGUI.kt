@@ -2,7 +2,6 @@ package com.serotonin.common.client.gui.competitivehandbook.widgets
 
 
 import com.serotonin.common.client.gui.competitivehandbook.CompetitiveHandbookGUIConstants.BASE_WIDTH
-import com.serotonin.common.tourneys.TournamentManager
 import com.serotonin.common.tourneys.TournamentManagerClient
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
@@ -11,7 +10,6 @@ import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 
 class TournamentInfoTextGUI(private val x: Int, private val y: Int) {
 

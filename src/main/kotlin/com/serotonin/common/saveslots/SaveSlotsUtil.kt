@@ -1,19 +1,17 @@
 package com.serotonin.common.saveslots
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.Cobblemon.battleRegistry
 import com.cobblemon.mod.common.api.storage.party.PartyPosition
 import com.serotonin.common.networking.ActiveSlotUpdatePayload
 import dev.emi.trinkets.api.TrinketsApi
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
-import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtElement
 import net.minecraft.nbt.NbtIo
 import net.minecraft.nbt.NbtSizeTracker
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import java.io.ByteArrayInputStream
-import java.util.UUID
+import java.util.*
 
 /*
 fun saveCurrentSlot(

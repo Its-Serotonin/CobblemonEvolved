@@ -8,7 +8,6 @@ import net.minecraft.client.font.TextRenderer
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.Drawable
 import net.minecraft.client.gui.Element
-import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.gui.widget.PressableWidget
 import net.minecraft.client.sound.PositionedSoundInstance
 import net.minecraft.text.Text

@@ -4,7 +4,6 @@ package com.serotonin.common.client.gui.competitivehandbook.widgets
 import com.serotonin.common.client.networking.ClientStatsStorage
 import com.serotonin.common.elosystem.getTierName
 import com.serotonin.common.networking.PlayerStatsPayload
-import com.serotonin.common.networking.getPlayerStats
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.text.Text

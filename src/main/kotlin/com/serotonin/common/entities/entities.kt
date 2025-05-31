@@ -1,7 +1,6 @@
 package com.serotonin.common.entities
 
 import com.serotonin.common.registries.EntityRegister
-import net.minecraft.command.argument.EntityArgumentType.entity
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityPose
@@ -39,46 +38,29 @@ class CustomNameTagRankEntity(
         isInvulnerable = true
        // hasNoGravity()
        // setNoGravity(true)
-        boundingBox = Box(0.1, 0.1, 0.1, 0.1, 0.1, 0.1) // Optional, makes it fully non-interactable
+        boundingBox = Box(0.01, 0.01, 0.01, 0.01, 0.01, 0.01)
         addCommandTag("RANKTAG")
         addCommandTag("#waila:blacklist")
+        addCommandTag("#wthit:blacklist")
         //health = 20.0f
 
     }
 
 
-
-
-
          companion object {
 
-            // private val CUSTOM_NAME: TrackedData<Text?> =
-             //    DataTracker.registerData(CustomNameTagRankEntity::class.java, TrackedDataHandlerRegistry.TEXT_COMPONENT)
-
-            // private val CUSTOM_NAME_VISIBLE: TrackedData<Boolean> =
-            //     DataTracker.registerData(CustomNameTagRankEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
-
-            // private val INVISIBLE: TrackedData<Boolean> =
-            //     DataTracker.registerData(CustomNameTagRankEntity::class.java, TrackedDataHandlerRegistry.BOOLEAN)
 
         fun createCustomAttributes(): DefaultAttributeContainer.Builder {
             return DefaultAttributeContainer.builder()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0) // Set max health
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0) // Immobile (optional)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0)
                 .add(EntityAttributes.GENERIC_SCALE, 1.0)
         }
     }
 
-   /* override fun tick() {
-        super.tick()
-        if (this.world == null) {
-            println("World is null in CustomNameTagRankEntity tick!")
-            return
-        }
-        // Optional: Update position if needed
-    }*/
+
     override fun getDimensions(pose: EntityPose): EntityDimensions {
-        return EntityDimensions.fixed(0.1f, 0.1f) // Tiny size
+        return EntityDimensions.fixed(0.1f, 0.1f)
     }
 
     override fun shouldSave(): Boolean {
@@ -93,9 +75,6 @@ class CustomNameTagRankEntity(
         }
         return false
     }
-   // override fun calculateDimensions() {
-    //    super.calculateDimensions()
-  //  }
 }
 
 
@@ -127,30 +106,24 @@ class CustomRankedPlayerNameEntity(
         isInvulnerable = true
         // hasNoGravity()
         // setNoGravity(true)
-        boundingBox = Box(0.1, 0.1, 0.1, 0.1, 0.1, 0.1) // Optional, makes it fully non-interactable
+        boundingBox = Box(0.01, 0.01, 0.01, 0.01, 0.01, 0.01)
         addCommandTag("RANKEDPLAYERNAMETAG")
         addCommandTag("#waila:blacklist")
+        addCommandTag("#wthit:blacklist")
         //health = 20.0f
     }
     companion object {
         fun createCustomAttributes(): DefaultAttributeContainer.Builder {
             return DefaultAttributeContainer.builder()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0) // Set max health
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0) // Immobile (optional)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.0)
                 .add(EntityAttributes.GENERIC_SCALE, 1.0)
         }
     }
 
-    /* override fun tick() {
-         super.tick()
-         if (this.world == null) {
-             println("World is null in CustomNameTagRankEntity tick!")
-             return
-         }
-         // Optional: Update position if needed
-     }*/
+
     override fun getDimensions(pose: EntityPose): EntityDimensions {
-        return EntityDimensions.fixed(0.1f, 0.1f) // Tiny size
+        return EntityDimensions.fixed(0.1f, 0.1f)
     }
 
     override fun shouldSave(): Boolean {

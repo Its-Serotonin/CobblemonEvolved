@@ -11,7 +11,6 @@ import com.serotonin.common.client.gui.competitivehandbook.widgets.CompetitiveHa
 import com.serotonin.common.client.gui.competitivehandbook.widgets.FriendlyBattleButtons
 import com.serotonin.common.client.gui.competitivehandbook.widgets.FriendlyBattleStatusTextGUI
 import com.serotonin.common.client.gui.competitivehandbook.widgets.TierIcons
-import com.serotonin.common.client.gui.competitivehandbook.widgets.TierIcons.Companion.tierIcons
 import com.serotonin.common.client.gui.competitivehandbook.widgets.TournamentInfoAnimationWidget
 import com.serotonin.common.client.gui.competitivehandbook.widgets.TournamentInfoTextGUI
 import com.serotonin.common.client.gui.competitivehandbook.widgets.TournamentSignupButton
@@ -23,7 +22,6 @@ import com.serotonin.common.networking.ClientEloStorage
 import com.serotonin.common.networking.RawJsonPayload
 import com.serotonin.common.networking.TournamentSignupPayload
 import com.serotonin.common.networking.setFriendlyBattle
-
 import com.serotonin.common.registries.FriendlyBattleManager
 import com.serotonin.common.registries.SoundRegistry.COMPETITIVE_GUI_CLOSE
 import com.serotonin.common.registries.SoundRegistry.COMPETITIVE_GUI_OPEN
@@ -81,7 +79,7 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
 
         isFriendly = FriendlyBattleManager.getCachedSetting(player.uuid)
 
-         currentElo = EloManager.playerElos[player.uuid] ?: 1000
+        currentElo = EloManager.playerElos[player.uuid] ?: 1000
 
         val centerX = (width - BASE_WIDTH) / 2
         val centerY = (height - BASE_HEIGHT) / 2
@@ -118,7 +116,8 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
             getCurrentState = {
 
 
-                FriendlyBattleManager.getCachedSetting(player.uuid) },
+                FriendlyBattleManager.getCachedSetting(player.uuid)
+            },
             onToggle = { newState ->
 
                 val jsonObject = buildJsonObject {
@@ -142,9 +141,6 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
             width = BASE_WIDTH,
             height = BASE_HEIGHT
         )
-
-
-
 
 
         val signupButton = TournamentSignupButton(
@@ -311,7 +307,7 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
         matrices.scale(scale, scale, 1.0f)
 
         CompetitiveHandbookTextGUI(
-          0,0
+            0, 0
         ).render(context)
 
         matrices.pop()
@@ -327,7 +323,7 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
 
         TournamentInfoTextGUI(
             0,
-             0
+            0
         ).render(context)
 
         matrices.pop()
@@ -342,14 +338,11 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
     }
 
 
-
-
-
     override fun keyPressed(keyCode: Int, scanCode: Int, modifiers: Int): Boolean {
 
         val inventoryKey = client?.options?.inventoryKey
         if (inventoryKey?.matchesKey(keyCode, scanCode) == true) {
-           // MinecraftClient.getInstance().setScreen(null)
+            // MinecraftClient.getInstance().setScreen(null)
             this.close()
             return true
         }
@@ -358,8 +351,7 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
     }
 
 
-
-    override fun close(){
+    override fun close() {
         super.close()
         client?.soundManager?.play(
             PositionedSoundInstance.master(
@@ -372,27 +364,6 @@ class CustomBookScreen : Screen(Text.of("Tier Rewards & Tournaments")) {
         clearSignupCache()
 
     }
-
-
-    /*private fun drawBackgroundTexture(context: DrawContext) {
-        val centerX = (width - BASE_WIDTH) / 2
-        val centerY = (height - BASE_HEIGHT) / 2
-
-        RenderSystem.setShaderTexture(0, screenBackground)
-        RenderSystem.texParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST)
-        RenderSystem.texParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST)
-
-        RenderSystem.disableDepthTest()
-
-        drawCrispTexture(
-            context,
-            screenBackground,
-            centerX,
-            centerY,
-            BASE_WIDTH,
-            BASE_HEIGHT
-        )
-    }*/
 
     private fun drawMask(context: DrawContext) {
         val centerX = (width - BASE_WIDTH) / 2

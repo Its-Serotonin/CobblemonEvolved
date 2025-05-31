@@ -1,12 +1,9 @@
 package com.serotonin.common.client.gui.competitivehandbook.widgets
 
 import com.mojang.blaze3d.systems.RenderSystem
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.Drawable
-import net.minecraft.client.gui.Element
 import net.minecraft.util.Identifier
-import org.joml.Quaternionf
 import org.lwjgl.opengl.GL11
 
 class TournamentInfoAnimationWidget(

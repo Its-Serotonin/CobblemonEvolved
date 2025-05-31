@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.entity.Entity
-import net.minecraft.network.packet.s2c.play.EntitiesDestroyS2CPacket
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
@@ -25,20 +24,6 @@ val pendingNameTagUpdates: MutableMap<UUID, ServerPlayerEntity> = ConcurrentHash
 val lastTagHidingTime = mutableMapOf<UUID, Int>()
 
 val cachedElo = mutableMapOf<UUID, Int>()
-
-// Remove and delete all existing rank tags
-    /*fun clearAllRankTags() {
-    // Iterate over all player UUIDs in the playerRankTags map
-    for ((uuid, tag) in playerRankTags) {
-        // Make sure the tag exists and is still in the world
-        if (tag.world != null) {
-            tag.kill() // Removes the entity from the world and kills it
-        }
-    }
-
-    // Clear the map after deleting the tags
-    playerRankTags.clear()
-}*/
 
 
 fun updatePlayerNametag(player: ServerPlayerEntity, elo: Int, rankName: String) {
@@ -63,21 +48,6 @@ fun updatePlayerNametag(player: ServerPlayerEntity, elo: Int, rankName: String) 
 
         syncTagAcrossServers(player, elo, rankName)
     }
-    /*
-    player.world.players.forEach { otherPlayer ->
-        if (otherPlayer is ServerPlayerEntity && otherPlayer.uuid != player.uuid) {
-            // Force entity data sync to this player
-            val packet = playerRankTags[player.uuid]?.createSpawnPacket()
-            if (packet != null) {
-                otherPlayer.networkHandler.sendPacket(packet)
-            }
-
-            val namePacket = mapOfRankedPlayerNameTags[player.uuid]?.createSpawnPacket()
-            if (namePacket != null) {
-                otherPlayer.networkHandler.sendPacket(namePacket)
-            }
-        }
-    }*/
 }
 
 
@@ -346,210 +316,5 @@ object PlayerRankTagsRegister {
             // playerRankTags.remove(uuid)?.kill()
            // mapOfRankedPlayerNameTags.remove(uuid)?.kill()
         }
-
             }
         }
-
-
-
-
-
-//private fun CustomNameTagRankEntity.setMarker(marker: Boolean) {}
-//private fun SlimeEntity.setMarker(marker: Boolean) {}
-
-
-                /*fun stopShowingShit(player: ServerPlayerEntity, playerNameTag: Text, rankTag: Text ) {
-                        val serverPlayer = player
-                        val world = player.world
-
-                    val namePlateTag = CustomRankedPlayerNameEntity(world).apply {
-                        customName = playerNameTag
-                        isCustomNameVisible = true
-                        isInvisible = true
-                        isInvulnerable = true
-                        setNoGravity(true)
-                        addCommandTag("RANKEDPLAYERNAMETAG")
-                    }
-                    val armourStandTag = CustomNameTagRankEntity(world).apply {
-                        customName = rankTag
-                        isCustomNameVisible = true
-                        isInvisible = true
-                        isInvulnerable = true
-                        setNoGravity(true)
-                        addCommandTag("RANKTAG")
-                    }
-                        serverPlayer.networkHandler.sendPacket(EntitiesDestroyS2CPacket(*intArrayOf(armourStandTag.id)))
-                        serverPlayer.networkHandler.sendPacket(EntitiesDestroyS2CPacket(*intArrayOf(namePlateTag.id)))
-                    }*/
-
-
-
-
-
-
-               // iterator.remove() // Done with this player
-
-                //player.networkHandler.sendPacket(
-                  //  EntitiesDestroyS2CPacket(*intArrayOf(tagAllPlayers.id, tag.id)))
-
-                //  if (!tag.hasVehicle()) {
-
-                //   tag.startRiding(player, true)
-//}
-
-                // val newX = player.x
-                // val newY = player.y - 0.4
-                // val newZ = player.z
-
-                // tag.teleport(newX, newY, newZ, false)
-
-
-                /*val isFirstPerson = player.pitch in -90.0..-55.0
-                tag.isCustomNameVisible = !isFirstPerson
-                playersNamee.isCustomNameVisible = !isFirstPerson*/
-
-
-               // if (player != null && player.world != null) {
-                //    val newPos = player.pos.add(0.0, -0.4, 0.0)
-                   // if (tag.squaredDistanceTo(playerPos.x, playerPos.y, playerPos.z) > 0.01) {
-                   //     tag.setPosition(newPos.x, newPos.y, newPos.z)
-                  //      tag.yaw = player.yaw
-                  //      tag.bodyYaw = player.yaw
-                  //      tag.headYaw = player.yaw
-                 //   } else {
-                 //       println("Player or player world is null!")
-
-                 //   }
-
-
-                    //  if (tag.vehicle == player) {
-                    // val pos = player.pos
-                    //tag.teleport(
-                    //   player.world as ServerWorld,
-                    //   newX,
-                    //  newY,
-                    //   newZ,
-                    //  mutableSetOf(PositionFlag.X, PositionFlag.Y, PositionFlag.Z),
-                    //  player.yaw.toFloat(),
-                    //   0f
-                    // )
-                    //  val newPos = playerPos.add(0.0, -0.4, 0.0)
-                    // tag.setPosition(newPos.x, newPos.y, newPos.z)
-               // }
-           // }
-     //   }
-
-
-
-
-
-
-
-/*private fun setNameTagVisibility(player: ServerPlayerEntity, tag: ArmorStandEntity, visible: Boolean) {
-    val packet = ClientboundSetEntityCustomTagPacket(tag.id, mutableListOf("RANKTAG"))
-    if (visible) {
-        // Send packet to make the tag visible to the player
-        player.networkHandler.sendPacket(packet)
-    } else {
-        // Send packet to make the tag invisible to the player
-        player.networkHandler.sendPacket(packet)
-    }
-}*/
-
-
-
-
-   /* var tagTickCounter = 0
-    fun rankTagUpdater() {
-        ServerTickEvents.START_SERVER_TICK.register { _ ->
-            tagTickCounter++
-            // server.scheduler.scheduleRepeat({
-            if (tagTickCounter >= 500) {
-                updateRankTags()
-                println("Debug: rank tags updating")
-                tagTickCounter = 0
-            }
-        }
-    }
-*/
-
-  //  private fun ArmorStandEntity.remove() {
-
-
-  // var playerCompetitiveRankTagsPosition: BlockPos? = null
-/*
-    fun updateRankTags() {
-
-
-        playerRankTags.forEach { it.remove(Entity.RemovalReason.DISCARDED) }
-        playerRankTags.clear()
-
-        playerRankTags.forEach { player ->
-            // nothing here yet
-
-    }
-}
-private fun Map.Entry<UUID, ArmorStandEntity>.remove(discarded: Entity.RemovalReason) {}
-}
-*/
-
-//private val showRankOnUsername.numberformat: NumberFormat? = NumberFormatType<StyledNumberFormat>
-
-//private val fancy = StyledNumberFormat.TYPE
-/* //START OF SCOREBOARD
-val numberFormat: NumberFormat = StyledNumberFormat(
-    Style.EMPTY.withColor(Formatting.RED).withBold(true)
-)
-object ShowRankOnUsername{
-    //private val scoreboardDisplayName = ScoreboardDisplaySlot.BELOW_NAME
-    val userRank = Scoreboard()
-    fun makeUserScoreboard(player: ServerPlayerEntity, elo: Int){
-        val objective = userRank.addObjective(
-            "userRank",
-            ScoreboardCriterion.DUMMY,
-            text("${getTierName(elo)}: §c§l$elo"),
-            ScoreboardCriterion.RenderType.INTEGER,
-            true,
-            numberFormat
-            //fancy as NumberFormat?,
-        )
-        userRank.setObjectiveSlot(ScoreboardDisplaySlot.BELOW_NAME, objective)
-
-        val score = userRank.getOrCreateScore(player, objective)
-        score.score = elo
-        val scoreboard = player.server.scoreboard
-       // scoreboard = userRank
-    } //END OF SCOREBOARD SO FAR */
-
-   /* private fun scoreboardDisplayName(text: MutableText): Text {
-        ScoreboardDisplaySlot.BELOW_NAME
-        return scoreboardDisplayName(text)
-    }*/
-
-    //could make fun thats just "getplayertier" and "getplayerrank" then put it into the shit
-
-  /*  ScoreboardObjective(
-    userRank,
-    "UserRank",
-    ScoreboardCriterion.DUMMY,
-    scoreboardDisplayName(text("Your current rank is ${getTierName(elo)}: §c§l$elo")),
-    ScoreboardCriterion.RenderType.INTEGER,
-    true,
-    fancy as NumberFormat?
-    )*/
-
-
-
-
-    //text("Your current rank is ${getTierName(elo)}: §c§l$elo")
-
-
-//   val player = context.source.player
-// val entry = eloMap[player!!.uuid]
-//  if (entry != null) {
-//    val (name, elo) = entry
-
-
-//val player = context.source.player
-//val elo = eloMap.getOrDefault(player!!.uuid, 1000)
-//context.source.sendFeedback({ text("§lCurrent Ladder Tiers: ${getTierList()}") }, false)

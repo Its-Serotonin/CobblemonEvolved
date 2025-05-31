@@ -2,22 +2,10 @@
 
 package com.serotonin.common.saveslots
 
-import net.fabricmc.api.EnvType
-import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.inventory.Inventory
-import net.minecraft.inventory.RecipeInputInventory
-import net.minecraft.item.ItemStack
+
 import net.minecraft.recipe.CraftingRecipe
 import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.SpecialRecipeSerializer
-
-
-import net.minecraft.recipe.Recipe
-import net.minecraft.recipe.RecipeType
-import net.minecraft.recipe.book.CraftingRecipeCategory
-import net.minecraft.registry.RegistryWrapper
-import net.minecraft.util.Identifier
-import net.minecraft.world.World
 
 /*
 @Suppress("UNCHECKED_CAST")

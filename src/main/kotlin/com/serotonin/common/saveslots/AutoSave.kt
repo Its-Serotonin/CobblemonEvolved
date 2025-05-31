@@ -5,7 +5,6 @@ import com.serotonin.common.networking.saveCobbledollarsToDatabase
 import fr.harmex.cobbledollars.common.utils.extensions.getCobbleDollars
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.minecraft.command.argument.EntityArgumentType.player
 import net.minecraft.server.network.ServerPlayerEntity
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap

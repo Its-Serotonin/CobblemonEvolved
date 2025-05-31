@@ -17,9 +17,6 @@ object ScreenshotManager {
     }
 
 
-
-
-
     private fun captureScreenshot(client: MinecraftClient) {
         val framebuffer = client.framebuffer
         val width = framebuffer.textureWidth
@@ -49,5 +46,17 @@ object ScreenshotManager {
         image.writeTo(file)
 
         image.close()
+    }
+}
+
+fun deleteScreenshotsForSlot(slot: Int) {
+    val screenshotDir = File(MinecraftClient.getInstance().runDirectory, "screenshots/saveslots")
+    if (!screenshotDir.exists()) return
+
+    screenshotDir.listFiles { file ->
+        file.name.startsWith("save_slot_${slot}_") && file.name.endsWith(".png")
+    }?.forEach { file ->
+        println("Deleting screenshot for slot $slot: ${file.name}")
+        file.delete()
     }
 }

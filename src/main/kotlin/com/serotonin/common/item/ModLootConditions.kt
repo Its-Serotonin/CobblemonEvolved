@@ -1,8 +1,6 @@
 package com.serotonin.common.item
 
-import com.mojang.serialization.MapCodec
 import com.serotonin.Cobblemonevolved.MOD_ID
-import net.minecraft.loot.condition.LootCondition
 import net.minecraft.loot.condition.LootConditionType
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry

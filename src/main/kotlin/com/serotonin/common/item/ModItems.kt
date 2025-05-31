@@ -1,33 +1,25 @@
 package com.serotonin.common.item
 
-import com.github.d0ctorleon.mythsandlegends.cobblemon.spawning.condition.keyitem.KeyItemCondition
-import com.github.d0ctorleon.mythsandlegends.cobblemon.spawning.condition.keyitem.KeyItemConditions
 import com.github.d0ctorleon.mythsandlegends.items.KeyItem
-import com.github.d0ctorleon.mythsandlegends.utils.ForceSpawningUtils
 import com.serotonin.Cobblemonevolved.MOD_ID
+import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
+import com.serotonin.common.saveslots.getEquippedBackpack
+import dev.emi.trinkets.api.TrinketsApi
+import net.minecraft.client.MinecraftClient
+import net.minecraft.component.DataComponentTypes
+import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.tooltip.TooltipType
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
-import net.minecraft.util.Identifier
-import net.minecraft.world.World
-import net.minecraft.client.MinecraftClient
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.Hand
+import net.minecraft.util.Identifier
 import net.minecraft.util.TypedActionResult
-import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
-import com.serotonin.common.saveslots.getEquippedBackpack
-import dev.emi.trinkets.api.TrinketsApi
-import net.minecraft.component.DataComponentTypes
-import net.minecraft.component.type.ContainerComponent
-import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.Items
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtElement
-import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.world.World
 
 object ModItems {
 

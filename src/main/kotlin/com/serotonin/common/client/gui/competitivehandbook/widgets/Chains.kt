@@ -1,15 +1,7 @@
 package com.serotonin.common.client.gui.competitivehandbook.widgets
 import com.mojang.blaze3d.systems.RenderSystem
-import com.serotonin.common.registries.SoundRegistry.FRIENDLY_BUTTON_OFF
-import com.serotonin.common.registries.SoundRegistry.FRIENDLY_BUTTON_ON
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.Drawable
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder
-import net.minecraft.client.gui.screen.narration.NarrationPart
-import net.minecraft.client.gui.widget.PressableWidget
-import net.minecraft.client.sound.SoundManager
-import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import org.lwjgl.opengl.GL11
 

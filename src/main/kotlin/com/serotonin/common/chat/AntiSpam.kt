@@ -6,7 +6,6 @@ import com.google.gson.JsonObject
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.serotonin.common.chat.ProfanityLogger.cleanIfOld
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
@@ -15,7 +14,17 @@ import java.io.IOException
 import java.time.Duration
 import java.time.Instant
 import java.util.UUID
-import net.minecraft.text.MutableText
+import kotlin.collections.ArrayDeque
+import kotlin.collections.Set
+import kotlin.collections.any
+import kotlin.collections.emptySet
+import kotlin.collections.getOrPut
+import kotlin.collections.isNotEmpty
+import kotlin.collections.listOf
+import kotlin.collections.mapNotNull
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
+import kotlin.collections.toSet
 
 
 object ChatRateLimiter {
@@ -25,7 +34,7 @@ object ChatRateLimiter {
     private const val TIME_WINDOW_MS = 3000L
     private const val COOLDOWN_MS = 5000L
     private val joinTimestamps = mutableMapOf<UUID, Long>()
-    private const val JOIN_GRACE_PERIOD_MS = 5000L
+    private const val JOIN_GRACE_PERIOD_MS = 7000L
 
 
     fun markJoin(uuid: UUID) {
@@ -173,18 +182,6 @@ object ChatModRegister {
             }
             true
         }
-
-        /*
-        ServerMessageEvents.ALLOW_COMMAND_MESSAGE.register { command, source, _ ->
-            val player = source.entity as? ServerPlayerEntity ?: return@register true
-
-            val result = ChatRateLimiter.handleChatOrCommand(player.uuid)
-            if (result != null) {
-                player.sendMessage(Text.literal(result), false)
-                return@register false
-            }
-            true
-        }*/
     }
 }
 val commandWhitelist = listOf("lp", "luckperms", "permissions", "pl")

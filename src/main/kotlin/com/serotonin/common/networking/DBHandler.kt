@@ -1,16 +1,14 @@
 package com.serotonin.common.networking
 
 import com.cobblemon.mod.common.CobblemonItems
-import com.cobblemon.mod.common.item.CobblemonItem
 import com.gmail.brendonlf.cobblemon_utility.Item.UtilityItems
 import com.serotonin.common.elosystem.getTierName
 import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import java.math.BigInteger
-import java.util.UUID
+import java.util.*
 import kotlin.concurrent.thread
 
 data class PlayerStats(

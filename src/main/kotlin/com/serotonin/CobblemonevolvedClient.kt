@@ -89,42 +89,6 @@ class CobblemonevolvedClient : ClientModInitializer {
             }
         }
 
-
-        /*
-       EntityRendererRegistry.register(CUSTOM_NAME_TAG_RANK_ENTITY) { context ->
-           CustomNameTagRankEntityRenderer(context)
-       }
-
-
-       EntityRendererRegistry.register(CUSTOM_RANKED_PLAYER_NAME_TAG_ENTITY) { context ->
-           CustomRankedPlayerNameEntityRenderer(context)
-       }
-
-       /*
-*/      EntityRendererRegistry.register(CobbleDollarsEntities.COBBLE_MERCHANT) { context ->
-           val renderer = CobbleMerchantRenderer(context)
-           renderer.addFeature(LobbyVendorOverlayFeature(renderer))
-           renderer
-       }*/
-
-
-
-        /*
-        ClientTickEvents.END_CLIENT_TICK.register { client ->
-            if (SaveSlotKeybinds.openSaveSlotKey.wasPressed() && client.currentScreen == null) {
-                if (SaveSlotScreenOpener.canOpen()) {
-                    client.setScreen(SaveSlotScreen())
-                    SaveSlotScreenOpener.markOpened()
-                }
-            }
-        }*/
-
-
-
-        // EntityRendererRegistry.register(CUSTOM_NAME_TAG_RANK_ENTITY, ::CustomNameTagRankEntityRenderer)
-      //  EntityRendererRegistry.register(CUSTOM_RANKED_PLAYER_NAME_TAG_ENTITY, ::CustomRankedPlayerNameEntityRenderer)
-
-
         println("Client Initialized!")
     }
 }

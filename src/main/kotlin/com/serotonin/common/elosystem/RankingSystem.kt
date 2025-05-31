@@ -1060,12 +1060,11 @@ var tickCounter = 0
 fun startPeriodicLeaderboardUpdate(server: MinecraftServer) {
     ServerTickEvents.START_SERVER_TICK.register { _ ->
         tickCounter++
-        if (tickCounter >= 500) {
+        if (tickCounter >= 6000) {
             if (leaderboardPosition != null) {
                 updateLeaderboard()
-                println("Debug: Leaderboard updating")
             } else {
-                println("Skipping leaderboard update — no leaderboard placed")
+                println("Skipping leaderboard update. no leaderboard placed")
             }
             tickCounter = 0
         }

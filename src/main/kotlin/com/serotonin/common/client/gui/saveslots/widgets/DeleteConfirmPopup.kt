@@ -5,9 +5,8 @@ import com.serotonin.common.client.gui.competitivehandbook.CompetitiveHandbookGU
 import com.serotonin.common.client.gui.competitivehandbook.CompetitiveHandbookGUIConstants.BASE_WIDTH
 import com.serotonin.common.registries.SoundRegistry
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.gui.DrawContext
-import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.font.TextRenderer
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.Drawable
 import net.minecraft.client.gui.Element
 import net.minecraft.client.gui.widget.PressableWidget

@@ -1,6 +1,5 @@
 package com.serotonin.common.saveslots
 
-// Kotlin object (or Java class with static field)
 
 object ClientShopCategoryContext {
     private var currentCategory: String? = null

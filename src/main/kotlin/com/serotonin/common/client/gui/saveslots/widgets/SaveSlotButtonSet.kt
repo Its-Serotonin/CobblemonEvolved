@@ -1,6 +1,5 @@
 package com.serotonin.common.client.gui.saveslots.widgets
 
-import com.serotonin.common.saveslots.ClientSaveSlotCache
 import com.serotonin.common.saveslots.ClientSaveSlotMetadata
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.Drawable

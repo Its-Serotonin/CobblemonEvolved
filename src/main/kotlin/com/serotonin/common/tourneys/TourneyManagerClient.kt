@@ -5,8 +5,6 @@ import net.minecraft.client.MinecraftClient
 import java.util.*
 
 data class CachedTournament(val ruleset: String, val startTime: String, val status: String)
-//for expanding to tournament uuid store
-//data class CachedTournament(val id: UUID, val ruleset: String, val startTime: String, val status: String)
 
 
 object TournamentManagerClient {

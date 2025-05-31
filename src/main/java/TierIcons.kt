@@ -1,13 +1,10 @@
-import com.mojang.blaze3d.systems.RenderSystem
 import com.serotonin.common.api.events.getMinimumEloForTier
 import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
 import com.serotonin.common.client.gui.drawCrispTexture
 import com.serotonin.common.client.gui.effects.GuiParticleManager
 import com.serotonin.common.elosystem.allTierRewards
-import com.serotonin.common.elosystem.claimedTiers
 import com.serotonin.common.elosystem.getTierName
 import com.serotonin.common.elosystem.hasClaimedTier
-import com.serotonin.common.elosystem.saveClaimedTier
 import com.serotonin.common.networking.RawJsonPayload
 import com.serotonin.common.registries.SoundRegistry
 import kotlinx.serialization.json.buildJsonObject
@@ -19,16 +16,17 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder
 import net.minecraft.client.gui.screen.narration.NarrationPart
 import net.minecraft.client.gui.widget.ClickableWidget
 import net.minecraft.client.sound.PositionedSoundInstance
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
-import net.minecraft.util.Rarity
+import net.minecraft.item.tooltip.TooltipType
 
 class TierIcons(
     x: Int,
     y: Int
 ) : ClickableWidget(x, y, 10, (10 + 3) * tierIcons.size - 3, Text.empty()) {
-
     companion object {
         private val BASE_TEXTURE = Identifier.of("cobblemonevolved", "textures/gui/competitivehandbook/")
 
@@ -36,6 +34,7 @@ class TierIcons(
             tierId to reward
         }
     }
+
 
     private var hoveredTierId: String? = null
 
@@ -47,6 +46,17 @@ class TierIcons(
         var currentY = y
 
         hoveredTierId = null
+        var rewardBoxHovered = false
+
+        var tooltipLinesToRender: List<Text>? = null
+        var tooltipBoxX = 0
+        var tooltipBoxY = 0
+        var tooltipBoxWidth = 0
+        var tooltipBoxHeight = 0
+        var claimedTooltipItems: List<Pair<ItemStack, Int>> = emptyList()
+
+        val tooltipContext = Item.TooltipContext.create(client.world)
+        val tooltipType = if (client.options.advancedItemTooltips) TooltipType.ADVANCED else TooltipType.BASIC
 
         tierIcons.forEach { (tierId, tierReward) ->
             val texture = tierReward.iconTexture
@@ -54,45 +64,89 @@ class TierIcons(
             val baseName = getTierName(getMinimumEloForTier(tierId))
             val rewards = tierReward.getRewardItems()
 
-
             drawCrispTexture(context, texture, x, currentY, 10, 10)
 
-            if (isMouseOver(mouseX, mouseY, currentY)) {
-                hoveredTierId = tierId
-
-                if (!claimed) {
-                    RenderSystem.enableDepthTest()
-                    RenderSystem.enableBlend()
-                    RenderSystem.defaultBlendFunc()
-
-                    rewards.forEachIndexed { i, item ->
-                        val iconX = mouseX + 5 + (i * 18)
-                        val iconY = mouseY + 15
-                        context.drawItem(item, iconX, iconY)
-                        context.drawItemInSlot(textRenderer, item, iconX, iconY)
-                    }
-                    RenderSystem.disableDepthTest()
-                }
-
-                val tooltipLines = if (claimed) {
-                    listOf(Text.literal(baseName), Text.literal("§aRewards already claimed!"))
-                } else {
-                    listOf(Text.literal(baseName), Text.literal("§aRewards:")) +
-                            rewards.map {
-                                val rarityColor = when (it.rarity) {
-                                    Rarity.UNCOMMON -> "§a"
-                                    Rarity.RARE -> "§9"
-                                    Rarity.EPIC -> "§d"
-                                    Rarity.COMMON, null -> "§f"
-                                }
-                                Text.literal(" - $rarityColor${it.name.string} x${it.count}")
-                            }
-                }
-
-                context.drawTooltip(textRenderer, tooltipLines, mouseX, mouseY)
+            val itemsPerRow = 7
+            val iconSpacing = 18
+            val textLines = if (claimed) {
+                listOf(Text.literal(baseName), Text.literal("§aRewards already claimed!"))
+            } else {
+                listOf(Text.literal(baseName), Text.literal("§aRewards:"))
             }
 
-            currentY += 13 // 10px icon + 3px spacing
+            val textHeight = textLines.size * 12
+            val iconHeight = if (claimed) 0 else ((rewards.size + itemsPerRow - 1) / itemsPerRow) * iconSpacing
+            val tooltipWidth = if (claimed) {
+                textLines.maxOf { textRenderer.getWidth(it) } + 8
+            } else {
+                maxOf(
+                    textLines.maxOf { textRenderer.getWidth(it) },
+                    rewards.size.coerceAtMost(itemsPerRow) * iconSpacing
+                ) + 7
+            }
+            val tooltipHeight = textHeight + iconHeight + if (claimed) 4 else 7
+
+            val tooltipX = mouseX + 12
+            val tooltipY = mouseY
+
+            val isInsideIcon = isMouseOver(mouseX, mouseY, currentY)
+            val isInsideTooltip =
+                hoveredTierId == tierId &&
+                        mouseX in tooltipX..(tooltipX + tooltipWidth) &&
+                        mouseY in tooltipY..(tooltipY + tooltipHeight)
+
+            if (isInsideIcon || isInsideTooltip) {
+                hoveredTierId = tierId
+                rewardBoxHovered = true
+
+                tooltipLinesToRender = textLines
+                tooltipBoxX = tooltipX
+                tooltipBoxY = tooltipY
+                tooltipBoxWidth = tooltipWidth
+                tooltipBoxHeight = tooltipHeight
+
+                if (!claimed) {
+                    claimedTooltipItems = rewards.mapIndexed { i, stack -> stack to i }
+                }
+            }
+
+            currentY += 13
+        }
+
+
+        tooltipLinesToRender?.let { lines ->
+            context.fill(
+                tooltipBoxX - 4, tooltipBoxY - 4,
+                tooltipBoxX + tooltipBoxWidth + 4, tooltipBoxY + tooltipBoxHeight + 4,
+                0xF0100010.toInt()
+            )
+
+            lines.forEachIndexed { i, line ->
+                context.drawText(textRenderer, line, tooltipBoxX, tooltipBoxY + i * 12, -1, true)
+            }
+
+            val textHeight = lines.size * 12
+            val itemStartY = tooltipBoxY + textHeight + 2
+            val iconSpacing = 18
+            val itemsPerRow = 7
+
+            claimedTooltipItems.forEach { (stack, index) ->
+                val row = index / itemsPerRow
+                val col = index % itemsPerRow
+                val iconX = tooltipBoxX + col * iconSpacing
+                val iconY = itemStartY + row * iconSpacing
+                context.drawItem(stack, iconX, iconY)
+                context.drawItemInSlot(textRenderer, stack, iconX, iconY)
+
+                if (mouseX in iconX..(iconX + 16) && mouseY in iconY..(iconY + 16)) {
+                    val itemTooltip = stack.getTooltip(tooltipContext, client.player, tooltipType)
+                    context.drawTooltip(textRenderer, itemTooltip, mouseX, mouseY)
+                }
+            }
+        }
+
+        if (!rewardBoxHovered) {
+            hoveredTierId = null
         }
 
         GuiParticleManager.render(context)
@@ -108,7 +162,7 @@ class TierIcons(
         val currentElo = (client.currentScreen as? CustomBookScreen)?.currentElo ?: 1000
         val requiredElo = getMinimumEloForTier(hoveredId)
 
-        println("🧪 Debug Elo Check: current=$currentElo required=$requiredElo")
+        println("Debug Elo Check: current=$currentElo required=$requiredElo")
 
         return when {
             hasClaimedTier(uuid, hoveredId) -> {
@@ -158,4 +212,5 @@ class TierIcons(
     private fun prettyTierName(tierId: String): String {
         return tierId.replace('_', ' ').replaceFirstChar { it.uppercaseChar() } + " Tier"
     }
+
 }

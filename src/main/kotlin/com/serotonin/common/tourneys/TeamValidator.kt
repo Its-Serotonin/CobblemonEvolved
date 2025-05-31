@@ -1,20 +1,13 @@
 package com.serotonin.common.tourneys
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.api.pokemon.stats.Stat
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
-import java.io.IOException
-import kotlin.collections.joinToString
-import kotlin.collections.*
-import com.cobblemon.mod.common.pokemon.EVs
-import net.minecraft.stat.StatType
 
 
 object TeamValidator {

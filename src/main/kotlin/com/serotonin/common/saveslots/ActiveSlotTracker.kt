@@ -1,7 +1,6 @@
 package com.serotonin.common.saveslots
 
 
-import net.minecraft.server.MinecraftServer
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 

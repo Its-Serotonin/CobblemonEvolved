@@ -4,67 +4,30 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.storage.party.PartyPosition
 import com.serotonin.common.api.events.EloManager
 import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
+import com.serotonin.common.client.gui.saveslots.SaveSlotScreen
 import com.serotonin.common.client.networking.ClientStatsStorage
-import com.serotonin.common.elosystem.LeaderboardManager
-import com.serotonin.common.elosystem.claimedTiers
-import com.serotonin.common.elosystem.displayLeaderboardAsFloatingText
-import com.serotonin.common.elosystem.getTierName
-import com.serotonin.common.elosystem.hasClaimedTier
-import com.serotonin.common.elosystem.leaderboardPosition
-import com.serotonin.common.elosystem.loadClaimedTiers
-import com.serotonin.common.elosystem.pendingNameTagUpdates
-import com.serotonin.common.elosystem.saveClaimedTier
+import com.serotonin.common.elosystem.*
 import com.serotonin.common.networking.LeaderboardData.pendingLeaderboardCallbacks
 import com.serotonin.common.registries.FriendlyBattleManager
-import com.serotonin.common.saveslots.ClientSaveSlotCache
-import com.serotonin.common.saveslots.PlayerSaveSlot
-import com.serotonin.common.saveslots.SaveSlotDAOImpl
-import com.serotonin.common.saveslots.clearAll
-import com.serotonin.common.saveslots.serializeInventory
-import com.serotonin.common.saveslots.serializePC
-import com.serotonin.common.saveslots.serializeParty
+import com.serotonin.common.registries.RankedBattleEvents
+import com.serotonin.common.saveslots.*
 import com.serotonin.common.tourneys.TournamentManager
 import com.serotonin.common.tourneys.TournamentManagerClient
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.booleanOrNull
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.int
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.put
+import kotlinx.serialization.json.*
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playC2S
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry.playS2C
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.client.MinecraftClient
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.network.codec.PacketCodec
 import net.minecraft.network.packet.CustomPayload
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
-import java.util.UUID
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.json.long
-import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
+import java.util.*
 import kotlin.concurrent.thread
-import com.serotonin.common.client.gui.saveslots.SaveSlotScreen
-import com.serotonin.common.registries.RankedBattleEvents
-import com.serotonin.common.saveslots.ActiveSlotTracker
-import com.serotonin.common.saveslots.SaveSlotBackupManager
-import com.serotonin.common.saveslots.SaveSlotCooldowns
-import com.serotonin.common.saveslots.clearEquippedBackpackAndTrinkets
-import com.serotonin.common.saveslots.clearNearbyDroppedItems
-import com.serotonin.common.saveslots.hasResidualEquippedData
-import com.serotonin.common.saveslots.isMeaningless
-import com.serotonin.common.saveslots.isPlayerMounted
-import com.serotonin.common.saveslots.loadSaveSlot
-import com.serotonin.common.saveslots.serializeBackpack
-import com.serotonin.common.saveslots.serializeTrinkets
-import com.serotonin.common.saveslots.shouldClearBeforeLoad
-import kotlinx.serialization.json.intOrNull
 
 
 data class RawJsonPayload(val json: String) : CustomPayload {
@@ -1056,15 +1019,16 @@ private fun handleRawJsonPayloadServerSide(payload: RawJsonPayload, player: Serv
                     return
                 }
 
-                // Save and respond
+
                 saveClaimedTier(uuid, tier)
+
                 val successJson = buildJsonObject {
                     put("type", "claim_tier_result")
                     put("success", true)
                     put("tier", tier)
                     put(
                         "message",
-                        "Rewards claimed for ${tier.replace('_', ' ').replaceFirstChar { it.uppercaseChar() }} Tier!"
+                        "§aRewards claimed for ${tier.replace('_', ' ').replaceFirstChar { it.uppercaseChar() }} Tier!"
                     )
                 }.toString()
                 ServerPlayNetworking.send(player, RawJsonPayload(successJson))
@@ -1415,12 +1379,17 @@ private fun handleRawJsonClientSide(payload: RawJsonPayload) {
                 ClientSaveSlotCache.clear()
                 val usedSlots = mutableSetOf<Int>()
 
+
                 slotArray.forEach { element ->
                     val obj = element.jsonObject
                     val slot = obj["slot"]?.jsonPrimitive?.int ?: return@forEach
                     val lastSaved = obj["lastSaved"]?.jsonPrimitive?.long ?: return@forEach
 
+
+
                     usedSlots.add(slot)
+
+
                     ClientSaveSlotCache.updateSlot(slot, lastSaved)
                 }
 

@@ -56,10 +56,10 @@ class FriendlyBattleButtons(
     protected override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         val isFriendly = getCurrentState()
         val texture = when {
-            isGreen && isFriendly -> greenOff // friendly is ON, green is pressed
-            isGreen && !isFriendly -> greenOn // friendly is OFF, green is up
-            !isGreen && isFriendly -> redOn  // friendly is ON, red is up
-            else -> redOff                   // friendly is OFF, red is pressed
+            isGreen && isFriendly -> greenOff
+            isGreen && !isFriendly -> greenOn
+            !isGreen && isFriendly -> redOn
+            else -> redOff
         }
 
         val textureX = x + (width - 8) / 2

@@ -1,14 +1,11 @@
 package com.serotonin.common.client.gui.saveslots.widgets
 
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder
 import net.minecraft.client.gui.screen.narration.NarrationPart
-import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.gui.widget.PressableWidget
 import net.minecraft.client.sound.SoundManager
 import net.minecraft.text.Text
-import java.awt.Rectangle
 
 class SilentButtonWidget(
     x: Int,

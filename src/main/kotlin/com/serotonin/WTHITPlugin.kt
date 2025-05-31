@@ -5,8 +5,6 @@ import com.serotonin.common.entities.CustomNameTagRankEntity
 import com.serotonin.common.entities.CustomRankedPlayerNameEntity
 import com.serotonin.common.registries.EntityRegister
 import mcp.mobius.waila.api.*
-import mcp.mobius.waila.config.ConfigEntry
-import mcp.mobius.waila.config.WailaConfig
 
 
 class WTHITPlugin : IWailaPlugin {
@@ -53,8 +51,11 @@ class WTHITPlugin : IWailaPlugin {
             registrar.addComponent(suppressor, TooltipPosition.HEAD, entityClass)
             registrar.addComponent(suppressor, TooltipPosition.BODY, entityClass)
             registrar.addComponent(suppressor, TooltipPosition.TAIL, entityClass)
+            registrar.addIcon(suppressor, entityClass)
+            registrar.addOverride(suppressor, CustomNameTagRankEntity::class.java)
+
+        }
             registrar.addBlacklist(EntityRegister.CUSTOM_NAME_TAG_RANK_ENTITY)
             registrar.addBlacklist(EntityRegister.CUSTOM_RANKED_PLAYER_NAME_TAG_ENTITY)
         }
     }
-}

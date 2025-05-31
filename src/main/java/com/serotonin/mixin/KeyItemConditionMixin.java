@@ -19,43 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.lang.reflect.Field;
 
-/*
-@Mixin(value = KeyItemConditions.KeyItem.class, remap = false)
-public class KeyItemConditionMixin {
-    @Inject(method = "fits", at = @At("HEAD"), cancellable = true)
-    private void overrideFits(SpawningContext context, CallbackInfoReturnable<Boolean> cir) {
-        try {
-            Identifier originalId = (Identifier)
-                    KeyItemConditions.KeyItem.class.getDeclaredField("key_item").get(this);
-
-
-            if (originalId == null || originalId.getPath().equals("none")) return;
-            if (!originalId.getPath().equals("beads_of_ruin")) return;
-
-            Spawner spawner = context.getSpawner();
-            if (spawner instanceof PlayerSpawner playerSpawner) {
-                ServerPlayerEntity player = MythsAndLegendsConditions.getPlayerFromUUID(context.getWorld(), playerSpawner.getUuid());
-                if (player != null) {
-
-                    Identifier correctId = Identifier.of("cobblemonevolved", "beads_of_ruin");
-                    Item item = Registries.ITEM.get(correctId);
-                    int count = PlayerDataUtils.getPlayerData(player).getItemCount(item);
-
-                    cir.setReturnValue(count >= 1);
-                } else {
-                    cir.setReturnValue(false);
-                }
-            } else {
-                cir.setReturnValue(false);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            cir.setReturnValue(false);
-        }
-    }
-}
-*/
 @Mixin(value = KeyItemConditions.KeyItem.class, remap = false)
 public class KeyItemConditionMixin {
     @Inject(method = "fits", at = @At("HEAD"), cancellable = true)

@@ -1,7 +1,6 @@
 package com.serotonin.common.client.gui.competitivehandbook.widgets
 
 
-import com.mojang.blaze3d.systems.RenderSystem
 import com.serotonin.common.api.events.getMinimumEloForTier
 import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
 import com.serotonin.common.client.gui.drawCrispTexture

@@ -2,7 +2,6 @@ package com.serotonin.common.client.gui.saveslots.widgets
 
 import com.mojang.blaze3d.systems.RenderSystem
 import com.serotonin.common.client.screenshots.extractTimestamp
-import com.serotonin.common.saveslots.ClientSaveSlotCache
 import com.serotonin.common.saveslots.ClientSaveSlotMetadata
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext

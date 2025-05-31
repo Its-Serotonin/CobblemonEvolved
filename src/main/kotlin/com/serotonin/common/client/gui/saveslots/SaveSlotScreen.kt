@@ -3,7 +3,7 @@ package com.serotonin.common.client.gui.saveslots
 import com.serotonin.common.client.gui.competitivehandbook.CompetitiveHandbookGUIConstants
 import com.serotonin.common.client.gui.saveslots.widgets.SaveSlotBackgroundWidget
 import com.serotonin.common.client.gui.saveslots.widgets.SaveSlotButtonSet
-import com.serotonin.common.client.screenshots.cleanupUnusedScreenshots
+import com.serotonin.common.client.screenshots.deleteScreenshotsForSlot
 import com.serotonin.common.networking.PlayerDataSyncNetworkingClient
 import com.serotonin.common.networking.SaveSlotRequestPayload
 import com.serotonin.common.registries.SoundRegistry
@@ -130,11 +130,7 @@ class SaveSlotScreen : Screen(Text.of("Save Slots")) {
                                 )
 
 
-                                        val usedSlots = (1..3)
-                                            .filter { it != i && ClientSaveSlotCache.getSlot(it)?.screenshotPath != null }
-                                            .toSet()
-
-                                        cleanupUnusedScreenshots(usedSlots)
+                                        deleteScreenshotsForSlot(i)
 
                                 refreshSlotButtons()
                             },
@@ -196,15 +192,19 @@ class SaveSlotScreen : Screen(Text.of("Save Slots")) {
             val metadata = ClientSaveSlotCache.getSlot(button.slot)
             button.refreshScreenshot(metadata)
         }
-
+        /*
         cleanupUnusedScreenshots(
             usedSlots = setOf(1, 2, 3).filter { ClientSaveSlotCache.getSlot(it)?.screenshotPath != null }.toSet()
-        )
+        )*/
     }
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         super.render(context, mouseX, mouseY, delta)
         renderPlayerName(context)
+    }
+
+    override fun shouldPause(): Boolean {
+        return false
     }
 
     private fun renderPlayerName(context: DrawContext) {

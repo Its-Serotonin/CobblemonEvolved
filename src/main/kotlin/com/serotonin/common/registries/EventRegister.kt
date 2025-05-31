@@ -1,27 +1,24 @@
 package com.serotonin.common.registries
-import com.serotonin.common.api.events.RankedMatchVictoryEvent
 //import com.serotonin.common.api.events.RankedMatchVictoryListener
-import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
-import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
-import com.serotonin.common.networking.ServerContext.server
-import com.serotonin.common.networking.getPlayerStats
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.minecraft.server.MinecraftServer
-import net.minecraft.util.ActionResult
-import java.util.UUID
-import java.util.concurrent.ConcurrentHashMap
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_STARTED_POST
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_STARTED_PRE
+import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
+import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.serotonin.common.api.events.EloManager
+import com.serotonin.common.api.events.RankedMatchVictoryEvent
+import com.serotonin.common.networking.ServerContext.server
 import com.serotonin.common.networking.getFriendlyBattle
+import com.serotonin.common.networking.getPlayerStats
 import com.serotonin.common.networking.setFriendlyBattle
 import com.serotonin.common.networking.syncFriendlyBattleToClient
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
-import net.minecraft.util.Identifier
+import net.minecraft.util.ActionResult
 import java.time.Instant
+import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.concurrent.thread
 
 object FriendlyBattleManager {

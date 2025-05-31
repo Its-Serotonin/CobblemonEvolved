@@ -22,6 +22,7 @@ import com.serotonin.common.registries.*
 import com.serotonin.common.saveslots.*
 import com.serotonin.common.tourneys.CachedFormatSuggestions
 import com.serotonin.common.tourneys.TournamentManager
+import com.serotonin.common.util.HelpCommand
 import dev.emi.trinkets.api.TrinketsApi
 import fr.harmex.cobbledollars.common.utils.extensions.getCobbleDollars
 import fr.harmex.cobbledollars.common.utils.extensions.setCobbleDollars
@@ -76,62 +77,12 @@ object Cobblemonevolved : ModInitializer {
         CustomVendorRegistry.register()
         registerBeadsOfRuinKeyItem()
 
-
-        /*
-                Registry.register(
-                    Registries.RECIPE_SERIALIZER,
-                    Identifier.of("cobblemonevolved", "fixed_backpack_dye"),
-                    FIXED_BACKPACK_DYE_SERIALIZER
-                )
-
-                if (FabricLoader.getInstance().isModLoaded("sophisticatedbackpacks")) {
-                    val dyeRecipeId = Identifier.of("sophisticatedbackpacks", "backpack_dye")
-                    Registry.register(
-                        Registries.RECIPE_SERIALIZER,
-                        dyeRecipeId,
-                        FIXED_BACKPACK_DYE_SERIALIZER
-                    )
-                    println("Overrode backpack dye serializer")
-                } else {
-                    println("Skipped backpack dye override — mod not loaded")
-                }
-
-         */
-
-
-
+        HelpCommand.registerCommand()
 
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
             TournamentManager.registerCommands(dispatcher)
         }
 
-        //CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
-        //	setLeaderboardCommand(dispatcher)  // Register the command
-        //}
-
-        /*
-        BATTLE_VICTORY.subscribe(Priority.NORMAL) { event ->
-            val server = ServerContext.server
-            if (server != null) {
-                EloManager.handleBattleVictoryEvent(event, server)
-            } else {
-                println("Cannot handle battle victory: server is null")
-            }
-        }*/
-        /*
-        RankedMatchVictoryEvent.RMVictoryEvent.EVENT.register(RankedMatchVictoryEvent.RMVictoryEvent { event ->
-            println("BATTLE_VICTORY event triggered")
-            val server = ServerContext.server
-            //val uuids = (event.winners + event.losers).map { it.uuid }.distinct()
-            if (server != null) {
-
-                    event.updateEloForAll(server)
-
-            } else {
-                println("Cannot update Elo: server instance not available")
-            }
-        })
-*/
 
         ServerLifecycleEvents.SERVER_STARTED.register { server ->
             ServerContext.server = server
@@ -176,8 +127,6 @@ object Cobblemonevolved : ModInitializer {
                 }
             }
         }
-        //dont need this during development, probably will turn it on for the final build
-        //syncAllOnlinePlayers(server)
 
 
         ServerPlayConnectionEvents.JOIN.register { handler, _, _ ->
@@ -579,37 +528,6 @@ object Cobblemonevolved : ModInitializer {
             }
         }
 
-//i got rid of this but its supposed to be if you dc during a battle idk if its needed ill do it later
-        /*ServerPlayConnectionEvents.DISCONNECT.register { handler, server ->
-            val player = handler.player
-            val uuid = player.uuid
-
-            // Check if player was in a battle
-            if (BattleEndHandler.isInBattle(uuid)) {
-                val battle = CobblemonBattleManager.getBattle(uuid)
-
-                // Log or handle incomplete battle
-                println("Player $uuid disconnected during battle")
-
-                // Optionally notify the other player(s)
-                battle?.participants
-                    ?.filterIsInstance<PlayerBattleActor>()
-                    ?.filter { it.uuid != uuid }
-                    ?.forEach { opponent ->
-                        server.playerManager.getPlayer(opponent.uuid)?.sendMessage(
-                            Text.literal("§cYour opponent disconnected. The battle has been cancelled.")
-                        )
-                    }
-
-                // Optionally: Mark the battle as incomplete or for review
-                // Or: End the battle early and auto-award the win (risky)
-            }
-        }*/
-
-
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
         logger.info("Cobblemon Evolved Mod Initialized.")
 
     }

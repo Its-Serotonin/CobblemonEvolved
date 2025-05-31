@@ -1,60 +1,39 @@
 package com.serotonin.common.api.events
 
-import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+//import com.serotonin.common.api.events.EloManager.sendEloChangeMessage
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
 import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.serotonin.common.api.events.EloManager.playerElos
 import com.serotonin.common.api.events.EloManager.sendEloChangeMessage
 import com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen
-import com.serotonin.common.elosystem.cachedElo
-import com.serotonin.common.elosystem.claimedTiers
-import net.fabricmc.fabric.api.event.Event
-import net.fabricmc.fabric.api.event.EventFactory
-import kotlin.math.pow
-import java.util.UUID
-//import com.serotonin.common.api.events.EloManager.sendEloChangeMessage
-import com.serotonin.common.elosystem.getTierName
-import com.serotonin.common.elosystem.mapOfRankedPlayerNameTags
-import com.serotonin.common.elosystem.pendingNameTagUpdates
-import com.serotonin.common.elosystem.playerRankTags
-import com.serotonin.common.elosystem.resetAllClaimedTiers
-import com.serotonin.common.elosystem.resetClaimedTiers
-import com.serotonin.common.elosystem.updatePlayerNametag
-import com.serotonin.common.networking.ClientEloStorage
-import com.serotonin.common.networking.Database
-import com.serotonin.common.networking.LeaderboardData
-import com.serotonin.common.networking.PlayerStatsPayload
-import com.serotonin.common.networking.RankResponsePayload
-import com.serotonin.common.networking.RawJsonPayload
+import com.serotonin.common.elosystem.*
+import com.serotonin.common.networking.*
 import com.serotonin.common.networking.ServerContext.server
-import com.serotonin.common.networking.getPlayerStats
-import com.serotonin.common.networking.requestPlayerElo
-import com.serotonin.common.networking.saveCobbledollarsToDatabase
-import com.serotonin.common.networking.sendEloUpdateToClient
-import net.minecraft.client.MinecraftClient
-import net.minecraft.server.MinecraftServer
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.text.Text
-import kotlin.math.absoluteValue
-import kotlin.math.max
+import fr.harmex.cobbledollars.common.utils.extensions.addCobbleDollars
+import fr.harmex.cobbledollars.common.utils.extensions.getCobbleDollars
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
+import net.fabricmc.fabric.api.event.Event
+import net.fabricmc.fabric.api.event.EventFactory
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
+import net.minecraft.client.MinecraftClient
+import net.minecraft.server.MinecraftServer
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.ClickEvent
 import net.minecraft.text.HoverEvent
+import net.minecraft.text.Text
+import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
-import kotlin.collections.filterValues
+import java.util.*
 import kotlin.concurrent.thread
-import fr.harmex.cobbledollars.common.utils.extensions.addCobbleDollars
-import fr.harmex.cobbledollars.common.utils.extensions.getCobbleDollars
-import java.math.BigInteger
+import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.pow
 
-
-//private val silentPlayers = Collections.synchronizedSet(mutableSetOf<UUID>())
 
 object EloManager {
 
@@ -74,7 +53,7 @@ object EloManager {
             if (callback != null) {
                 println("handleEloResponse: running callback for $uuid")
                 callback(elo)
-                //return //temp disable i guess
+
             }
 
             playerElos[uuid] = elo
@@ -85,10 +64,6 @@ object EloManager {
                 try {
                     val tier = getTierName(elo)
                     println("Updating nametag for ${player.name.string} with Elo $elo")
-                    // val rankText = Text.literal(tier)
-                    //    .append(Text.literal(": "))
-                    //    .append(Text.literal("§c§l$elo"))
-
 
                     updatePlayerNametag(player, elo, getTierName(elo))
 
@@ -170,7 +145,7 @@ object EloManager {
             val player = client.player ?: return
 
             if (isSelf) {
-                (client.currentScreen as? com.serotonin.common.client.gui.competitivehandbook.CustomBookScreen)?.apply {
+                (client.currentScreen as? CustomBookScreen)?.apply {
                     currentElo = elo
                     println("Updated currentElo in GUI to $elo")
                 }
@@ -288,17 +263,6 @@ object EloManager {
             e.printStackTrace()
         }
     }
-
-    //old match stats message
-    /*fun sendEloChangeMessage(player: ServerPlayerEntity, oldElo: Int, newElo: Int) {
-            val change = newElo - oldElo
-            val changeText = if (change >= 0) "§aYou gained §l$change§r§a points!" else "§cYou lost §l${-change}§r§c points!"
-            val rankName = getTierName(newElo)
-
-            val message = "$changeText §rYou are now rank §e$rankName§r with §c§l$newElo§r points."
-
-            player.sendMessage(Text.literal(message))
-        }*/
 
 
     fun incrementBattleStats(uuid: UUID, won: Boolean) {
