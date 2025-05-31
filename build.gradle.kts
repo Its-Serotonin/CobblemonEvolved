@@ -49,11 +49,7 @@ repositories {
 	flatDir{
 		dirs("libs")
 	}
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+
 	exclusiveContent {
 		forRepository {
 			maven {
@@ -95,15 +91,36 @@ dependencies {
 
 
 // === Local Mod Jars ===
-	modImplementation(files("libs/wthit-fabric-12.5.3.jar"))
+	//modImplementation(files("libs/wthit-fabric-12.5.3.jar"))
 
 	modImplementation("dev.emi:trinkets:3.10.0")
 
-	modImplementation(files("libs/CobbleDollars-fabric-2.0.0+Beta-3+1.21.1.jar"))
-	modImplementation(files("libs/Cobblemon-Utility+-fabric-1.6.1.jar"))
-	modImplementation(files("libs/cobgyms-fabric-3.0.1+1.21.1.jar"))
-	modImplementation(files("libs/SimpleTMs-fabric-2.1.2.jar"))
-	modImplementation(files("libs/MythsAndLegends-fabric-1.7.2.jar"))
+	val localLibs = listOf(
+		"wthit-fabric-12.5.3.jar",
+		"CobbleDollars-fabric-2.0.0+Beta-3+1.21.1.jar",
+		"Cobblemon-Utility+-fabric-1.6.1.jar",
+		"cobgyms-fabric-3.0.1+1.21.1.jar",
+		"SimpleTMs-fabric-2.1.2.jar",
+		"MythsAndLegends-fabric-1.7.2.jar",
+	)
+
+	for (jar in localLibs) {
+		val jarFile = file("libs/$jar")
+		if (jarFile.exists()) {
+			modImplementation(files(jarFile))
+			implementation(files(jarFile))
+		} else {
+			println("Skipping missing local jar: $jar")
+		}
+	}
+
+
+
+	//modImplementation(files("libs/CobbleDollars-fabric-2.0.0+Beta-3+1.21.1.jar"))
+	//modImplementation(files("libs/Cobblemon-Utility+-fabric-1.6.1.jar"))
+	//modImplementation(files("libs/cobgyms-fabric-3.0.1+1.21.1.jar"))
+	//modImplementation(files("libs/SimpleTMs-fabric-2.1.2.jar"))
+	//modImplementation(files("libs/MythsAndLegends-fabric-1.7.2.jar"))
 
 	val backpacksJar = files("libs/sophisticatedbackpacks-1.21.1-3.23.4.1.96.jar")
 	modImplementation(backpacksJar)
