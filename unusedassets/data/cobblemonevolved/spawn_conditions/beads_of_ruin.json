@@ -1,9 +1,0 @@
-{
-  "id": "cobblemonevolved:chiyu",
-  "conditions": {
-    "key_item": "cobblemonevolved:beads_of_ruin",
-    "biome": "minecraft:plains",
-    "time": "day"
-    // Add other conditions as needed
-  }
-}
