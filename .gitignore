@@ -32,7 +32,7 @@ bin/
 /unusedassets/
 /unusedscreenshotshit/
 run/
-
+/libs/
 # java
 
 hs_err_*.log
