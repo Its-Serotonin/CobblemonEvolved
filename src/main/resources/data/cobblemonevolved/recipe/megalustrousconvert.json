@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mega_showdown:lustrous_orb"
+    }
+  ],
+  "result": {
+    "id": "myths_and_legends:lustrous_orb",
+    "count": 1
+  }
+}

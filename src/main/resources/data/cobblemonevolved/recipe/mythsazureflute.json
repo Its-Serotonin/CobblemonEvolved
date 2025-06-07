@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "myths_and_legends:azure_flute"
+    }
+  ],
+  "result": {
+    "id": "mega_showdown:azure_flute",
+    "count": 1
+  }
+}

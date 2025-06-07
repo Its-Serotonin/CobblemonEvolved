@@ -1,0 +1,14 @@
+{
+ "target": "cobblemon:duraludon",
+     "evolutions": [
+       {
+         "id": "duraludon_archaludon",
+         "variant": "item_interact",
+         "result": "archaludon",
+         "consumeHeldItem": true,
+         "learnableMoves": [],
+         "requirements": [],
+         "requiredContext": "cobblemonevolved:metal_alloy"
+       }
+     ]
+   }

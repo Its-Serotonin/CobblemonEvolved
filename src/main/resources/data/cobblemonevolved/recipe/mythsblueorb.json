@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "myths_and_legends:blue_orb"
+    }
+  ],
+  "result": {
+    "id": "mega_showdown:blueorb",
+    "count": 1
+  }
+}

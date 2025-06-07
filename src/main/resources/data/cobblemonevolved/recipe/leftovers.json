@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    "bap",
+    " m "
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:bread"
+    },
+    "a": {
+      "item": "minecraft:apple"
+    },
+    "p": {
+      "item": "minecraft:potato"
+    },
+    "m": {
+      "item": "minecraft:mushroom_stew"
+    }
+  },
+  "result": {
+    "id": "cobblemon:leftovers",
+    "count": 1
+  }
+}

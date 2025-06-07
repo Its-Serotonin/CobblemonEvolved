@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "mtm",
+    "tdt",
+    "mtm"
+  ],
+  "key": {
+    "m": {
+      "item": "minecraft:disc_fragment_5"
+    },
+    "t": {
+      "item": "minecraft:turtle_scute"
+    },
+    "d": {
+      "item": "cobblemon:dubious_disc"
+    }
+  },
+  "result": {
+    "id": "simpletms:tm_protect",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " p ",
+    "dgd",
+    " p "
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:pink_dye"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "cobblemon:fairy_gem",
+    "count": 1
+  }
+}

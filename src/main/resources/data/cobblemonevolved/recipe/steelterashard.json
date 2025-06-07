@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ama",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "m": {
+      "item": "cobblemon:metal_coat"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:steel_tera_shard",
+    "count": 2
+  }
+}

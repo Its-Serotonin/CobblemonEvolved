@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aca",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "c": {
+      "item": "cobblemon:charcoal_stick"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:fire_tera_shard",
+    "count": 2
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "dgd",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:green_dye"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "cobblemon:grass_gem",
+    "count": 1
+  }
+}

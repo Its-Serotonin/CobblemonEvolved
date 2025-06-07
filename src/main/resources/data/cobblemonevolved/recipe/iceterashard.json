@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ana",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "n": {
+      "item": "cobblemon:never_melt_ice"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:ice_tera_shard",
+    "count": 2
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aha",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "h": {
+      "item": "cobblemon:hard_stone"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:rock_tera_shard",
+    "count": 2
+  }
+}

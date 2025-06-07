@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "i  ",
+    "s  ",
+    " ss"
+  ],
+  "key": {
+    "i": {
+      "item": "cobblemon:iron_ball"
+    },
+    "s": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:lagging_tail",
+    "count": 1
+  }
+}

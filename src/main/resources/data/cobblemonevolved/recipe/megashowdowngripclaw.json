@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "rb ",
+    "s s",
+    " ss"
+  ],
+  "key": {
+    "r": {
+      "item": "cobblemon:razor_claw"
+    },
+    "b": {
+      "item": "cobblemon:binding_band"
+    },
+    "s": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:gripclaw",
+    "count": 1
+  }
+}

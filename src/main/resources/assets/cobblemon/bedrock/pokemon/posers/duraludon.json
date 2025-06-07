@@ -1,0 +1,74 @@
+
+{
+ "rootBone": "duraludon",
+  "head": "head",
+  "portraitScale": 0.6,
+  "portraitTranslation": [ 0, 1, 0 ],
+  "profileScale": 0.7,
+  "profileTranslation": [ 0, 1, 0 ],
+"animations": {
+ "cry": "q.bedrock_stateful('duraludon', 'cry')",
+"recoil": "q.bedrock_primary('duraludon', 'recoil', q.curve('symmetrical_wide'))",
+ "physical": "q.bedrock_primary('duraludon', 'physical', q.curve('symmetrical_wide'))",
+ "special": "q.bedrock_primary('duraludon', 'special', q.curve('symmetrical_wide'))",
+"faint": "q.bedrock_primary('duraludon', 'faint', q.curve('one'))"
+ },
+
+  "poses": {
+  "standing": {
+      "poseName": "standing",
+      "transformTicks": 10,
+      "poseTypes": [
+      "STAND",
+      "NONE",
+      "PORTRAIT",
+      "PROFILE"
+      ],
+  "isBattle": false,
+      "animations": [
+      "bedrock(duraludon, ground_idle)"
+
+            ]
+  },
+  "walking": {
+      "poseName": "walking",
+      "transformTicks": 10,
+      "poseTypes": [ "WALK" ],
+      "animations": [ 
+"bedrock(duraludon, ground_walk)" ]
+
+  },
+  "floating": {
+      "poseName": "floating",
+      "transformTicks": 10,
+      "isTouchingWater": true,
+      "poseTypes": [ "STAND" ],
+      "animations": [ 
+       ]
+  },
+  "swimming": {
+      "poseName": "swimming",
+      "transformTicks": 10,
+      "isTouchingWater": true,
+      "poseTypes": [ "SWIM" ],
+      "animations": [ 
+	      ]
+      },
+
+  "sleeping": {
+      "poseName": "sleeping",
+      "transformTicks": 10,
+      "poseTypes": ["SLEEP"],
+      "animations": [ ]
+    },
+ "battle-idle": {
+      "poseName": "battle-idle",
+      "transformTicks": 10,
+      "poseTypes": [ "STAND" ],
+      "isBattle": true,
+      "animations": [ "bedrock(duraludon, battle_idle)" ]
+      }
+
+  }
+}
+  

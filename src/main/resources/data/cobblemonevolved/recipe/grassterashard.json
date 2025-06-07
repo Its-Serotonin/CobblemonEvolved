@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ama",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "m": {
+      "item": "cobblemon:miracle_seed"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:grass_tera_shard",
+    "count": 2
+  }
+}

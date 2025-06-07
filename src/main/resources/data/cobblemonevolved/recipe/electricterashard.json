@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ama",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "m": {
+      "item": "cobblemon:magnet"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:electric_tera_shard",
+    "count": 2
+  }
+}

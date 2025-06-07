@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " m ",
+    "bcs",
+    " f "
+  ],
+  "key": {
+    "m": {
+      "item": "mega_showdown:mega_meteoroid_block"
+    },
+    "b": {
+      "item": "cobblemon:choice_band"
+    },
+    "c": {
+      "item": "mega_showdown:mega_stone_crystal"
+    },
+    "s": {
+      "item": "cobblemon:choice_specs"
+    },
+    "f": {
+      "item": "cobblemon:choice_scarf"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:booster_energy",
+    "count": 1
+  }
+}

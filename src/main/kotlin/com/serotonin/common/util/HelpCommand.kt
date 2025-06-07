@@ -111,7 +111,7 @@ object HelpCommand{
         )
 
         val patreon = Text.literal("-Patreon: ").append(
-            Text.literal("https://www.patreon.com/yourname").styled {
+            Text.literal("https://patreon.com/CobblemonEvolved").styled {
                 it.withColor(Formatting.AQUA)
                     .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.patreon.com/yourname"))
                     .withUnderline(true)
@@ -119,7 +119,7 @@ object HelpCommand{
         )
 
         val modrinth = Text.literal("-Modrinth: ").append(
-            Text.literal("https://modrinth.com/user/yourmod").styled {
+            Text.literal("https://modrinth.com/project/cobblemon-evolved-sero").styled {
                 it.withColor(Formatting.AQUA)
                     .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, "https://modrinth.com/user/yourmod"))
                     .withUnderline(true)
@@ -127,7 +127,7 @@ object HelpCommand{
         )
 
         val curseforge = Text.literal("-CurseForge: ").append(
-            Text.literal("https://www.curseforge.com/minecraft/mc-mods/yourmod").styled {
+            Text.literal("https://legacy.curseforge.com/minecraft/mc-mods/cobblemon-evolved").styled {
                 it.withColor(Formatting.AQUA)
                     .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/yourmod"))
                     .withUnderline(true)

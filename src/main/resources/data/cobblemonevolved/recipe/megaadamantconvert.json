@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mega_showdown:adamant_orb"
+    }
+  ],
+  "result": {
+    "id": "myths_and_legends:adamant_orb",
+    "count": 1
+  }
+}

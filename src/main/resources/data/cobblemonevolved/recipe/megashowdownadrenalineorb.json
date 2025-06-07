@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " s ",
+    "scs",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:sugar"
+    },
+    "c": {
+      "item": "cobblemon:choice_scarf"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:adrenalineorb",
+    "count": 1
+  }
+}

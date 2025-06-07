@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ata",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "t": {
+      "item": "cobblemon:twisted_spoon"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:psychic_tera_shard",
+    "count": 2
+  }
+}

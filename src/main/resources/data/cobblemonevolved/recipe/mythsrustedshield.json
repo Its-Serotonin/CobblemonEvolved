@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "myths_and_legends:rusted_shield"
+    }
+  ],
+  "result": {
+    "id": "mega_showdown:rusted_shield",
+    "count": 1
+  }
+}

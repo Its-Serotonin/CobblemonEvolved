@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "myths_and_legends:scroll_of_water"
+    }
+  ],
+  "result": {
+    "id": "mega_showdown:scroll_of_waters",
+    "count": 1
+  }
+}

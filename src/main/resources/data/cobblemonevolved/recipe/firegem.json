@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " r ",
+    "dgd",
+    " r "
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:red_dye"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "cobblemon:fire_gem",
+    "count": 1
+  }
+}

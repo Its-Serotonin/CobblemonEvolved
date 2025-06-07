@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    " s ",
+    "ggg"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:sugar"
+    },
+    "g": {
+      "item": "minecraft:green_dye"
+    }
+  },
+  "result": {
+    "id": "cobblemon:silver_powder",
+    "count": 1
+  }
+}

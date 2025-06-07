@@ -1,0 +1,11 @@
+{
+  "pokemon.chiyu.cry": {
+    "sounds": [ "cobblemon:pokemon/chiyu/chiyu_cry" ]
+  },
+	"pokemon.duraludon.cry": {
+        "sounds": ["cobblemon:pokemon/duraludon/duraludon_cry"]
+    },
+	"pokemon.archaludon.cry": {
+        "sounds": ["cobblemon:pokemon/archaludon/archaludon_cry"]
+    }
+}

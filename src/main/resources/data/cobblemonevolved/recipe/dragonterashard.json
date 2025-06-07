@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "ada",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "d": {
+      "item": "cobblemon:dragon_fang"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:dragon_tera_shard",
+    "count": 2
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " w ",
+    "dgd",
+    " w "
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:white_dye"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "cobblemon:normal_gem",
+    "count": 1
+  }
+}

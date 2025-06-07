@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cobblemon_evolved_items",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "cobblemonevolved:metal_alloy"
+    }
+  ],
+  "result": {
+    "id": "cobblemon:metal_coat",
+    "count": 1
+  }
+}

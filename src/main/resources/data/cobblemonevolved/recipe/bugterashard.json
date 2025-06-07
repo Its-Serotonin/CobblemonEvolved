@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "asa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "s": {
+      "item": "cobblemon:silver_powder"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:bug_tera_shard",
+    "count": 2
+  }
+}

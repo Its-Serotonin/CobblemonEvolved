@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "asa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "s": {
+      "item": "cobblemon:soft_sand"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:ground_tera_shard",
+    "count": 2
+  }
+}

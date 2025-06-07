@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " d ",
+    "dfd",
+    " d "
+  ],
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "f": {
+      "item": "cobblemon:full_heal"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:clear_amulet",
+    "count": 1
+  }
+}

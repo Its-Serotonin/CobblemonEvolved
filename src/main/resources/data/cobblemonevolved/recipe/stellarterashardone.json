@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aea",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "e": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:stellar_tera_shard",
+    "count": 2
+  }
+}

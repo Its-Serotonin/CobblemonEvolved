@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "apa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "p": {
+      "item": "cobblemon:poison_barb"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:poison_tera_shard",
+    "count": 2
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "asa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "s": {
+      "item": "cobblemon:sharp_beak"
+    }
+  },
+  "result": {
+    "id": "mega_showdown:flying_tera_shard",
+    "count": 2
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " y ",
+    "dgd",
+    " y "
+  ],
+  "key": {
+    "y": {
+      "item": "minecraft:yellow_dye"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "g": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "id": "cobblemon:electric_gem",
+    "count": 1
+  }
+}
