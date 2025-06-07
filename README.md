@@ -9,3 +9,5 @@ All custom artwork, textures, sound effects, and other assets included in this m
     This includes but is not limited to GUI textures, icons, audio, and branding.
 
 If you wish to use any of the assets, please contact the developer for permission.
+
+My definition of assets would be things like models, textures, sound effects/music, particle textures, GUI, animations, etc.
