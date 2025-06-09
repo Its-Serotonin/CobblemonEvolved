@@ -127,7 +127,7 @@ object HelpCommand{
         )
 
         val curseforge = Text.literal("-CurseForge: ").append(
-            Text.literal("https://legacy.curseforge.com/minecraft/mc-mods/cobblemon-evolved").styled {
+            Text.literal("https://www.curseforge.com/minecraft/mc-mods/cobblemon-evolved").styled {
                 it.withColor(Formatting.AQUA)
                     .withClickEvent(ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/yourmod"))
                     .withUnderline(true)
