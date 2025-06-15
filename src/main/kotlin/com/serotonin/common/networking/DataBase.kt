@@ -4,9 +4,7 @@ package com.serotonin.common.networking
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import net.minecraft.server.MinecraftServer
-import java.io.File
 import java.util.Properties
-import java.util.UUID
 
 
 object ModConfig {
@@ -48,7 +46,7 @@ object Database {
             username = ModConfig.username
             password = ModConfig.password
             driverClassName = "org.postgresql.Driver"
-            maximumPoolSize = 30
+            maximumPoolSize = 10
             connectionTimeout = 7000
             idleTimeout = 60000
             maxLifetime = 1800000
