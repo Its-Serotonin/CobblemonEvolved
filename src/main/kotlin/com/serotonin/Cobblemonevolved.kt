@@ -369,9 +369,7 @@ object Cobblemonevolved : ModInitializer {
                 val player = entity
                 val uuid = player.uuid
 
-
-                player.passengerList.forEach { it.discard() }
-                player.removeAllPassengers()
+                //swapped order of removeallpassengers and discard to prevent issues with nametags
 
                 player.serverWorld.iterateEntities()
                     .filter {
@@ -379,6 +377,10 @@ object Cobblemonevolved : ModInitializer {
                                 it.vehicle?.uuid == player.uuid
                     }
                     .forEach { it.discard() }
+
+                player.passengerList.forEach { it.discard() }
+                player.removeAllPassengers()
+
 
                 if (player.serverWorld.registryKey == World.OVERWORLD) {
                     val cached = pendingNameTagUpdates[uuid]
