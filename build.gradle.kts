@@ -91,7 +91,7 @@ dependencies {
 
 
 // === Local Mod Jars ===
-	modImplementation(files("libs/wthit-fabric-12.5.3.jar"))
+	modImplementation(files("libs/Jade-1.21.1-Fabric-15.10.1.jar"))
 
 	modImplementation("dev.emi:trinkets:3.10.0")
 
@@ -112,8 +112,6 @@ dependencies {
 
 	implementation("com.squareup.okhttp3:okhttp:4.12.0")
 	implementation("org.json:json:20240303")
-	//modImplementation("lol.bai.wthit:wthit:12.4.2")
-	//include("lol.bai.wthit:wthit:12.4.2")
 	//compileOnly("com.velocitypowered.api:velocity-api:3.4.0-SNAPSHOT")
 	//annotationProcessor("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 	//modImplementation("vazkii.patchouli:Patchouli:1.21-87-FABRIC")

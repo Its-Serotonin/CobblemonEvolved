@@ -1064,7 +1064,7 @@ fun startPeriodicLeaderboardUpdate(server: MinecraftServer) {
             if (leaderboardPosition != null) {
                 updateLeaderboard()
             } else {
-                println("Skipping leaderboard update. no leaderboard placed")
+                //removed "skipping leaderboard" line to prevent spam
             }
             tickCounter = 0
         }

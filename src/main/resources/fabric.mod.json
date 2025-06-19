@@ -30,9 +30,9 @@
 		"client": [
 			"com.serotonin.CobblemonevolvedClient"
 		],
-		"wthit:plugin": [
+		"jade:plugin": [
 			 {
-				 "value": "com.serotonin.WTHITPlugin",
+				 "value": "com.serotonin.JadePlugin",
 				 "adapter": "kotlin"
 				}
 		]
