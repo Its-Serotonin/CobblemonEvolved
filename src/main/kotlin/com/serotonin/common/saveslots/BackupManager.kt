@@ -91,6 +91,9 @@ object SaveSlotBackupManager {
         }
     }
 
+
+
+
     private fun encodeBackup(data: PlayerSaveSlot): ByteArray {
         val output = ByteArrayOutputStream()
         val tag = NbtCompound().apply {

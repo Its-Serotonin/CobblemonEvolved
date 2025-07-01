@@ -34,6 +34,14 @@ import com.serotonin.common.networking.triggerLeaderboardDisplayOnServer
 import com.serotonin.common.networking.updatePlayerStats
 import com.serotonin.common.registries.EntityRegister
 import com.serotonin.common.registries.FriendlyBattleManager
+import com.serotonin.common.saveslots.PlayerSaveSlot
+import com.serotonin.common.saveslots.SaveSlotBackupManager
+import com.serotonin.common.saveslots.SaveSlotDAOImpl
+import com.serotonin.common.saveslots.deserializeBackpack
+import com.serotonin.common.saveslots.deserializeInventory
+import com.serotonin.common.saveslots.deserializePC
+import com.serotonin.common.saveslots.deserializeParty
+import com.serotonin.common.saveslots.deserializeTrinkets
 import fr.harmex.cobbledollars.common.world.entity.CobbleMerchant
 import net.minecraft.server.command.CommandManager.argument
 import kotlinx.serialization.Serializable
@@ -62,6 +70,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.world.World
+import java.io.File
 import java.time.Duration
 import java.time.Instant
 import kotlin.collections.component1
@@ -129,6 +138,8 @@ object CommandRegister {
         }
 
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+            registerLoadSaveslotBackupCommand(dispatcher)
+            registerListBackupsCommand(dispatcher)
             registerCompetitiveHandbookCommand(dispatcher)
             registerClaimPlaytestRewardCommand(dispatcher)
             registerSpawnLobbyVendorCommand(dispatcher)
@@ -145,6 +156,94 @@ object CommandRegister {
             registerResetRankCommands(dispatcher)
         }
     }
+
+    private fun registerListBackupsCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
+        dispatcher.register(
+            literal("listbackups")
+                .requires { it.hasPermissionLevel(4) }
+                .then(argument("slot", IntegerArgumentType.integer(0))
+                    .executes { ctx ->
+                        val player = ctx.source.playerOrThrow
+                        listBackupFiles(ctx.source, player, IntegerArgumentType.getInteger(ctx, "slot"))
+                        1
+                    }
+                    .then(argument("target", EntityArgumentType.player())
+                        .executes { ctx ->
+                            val target = EntityArgumentType.getPlayer(ctx, "target")
+                            listBackupFiles(ctx.source, target, IntegerArgumentType.getInteger(ctx, "slot"))
+                            1
+                        })
+                )
+        )
+    }
+
+    fun listBackupFiles(source: ServerCommandSource, player: ServerPlayerEntity, slot: Int) {
+        val dir = File("shared/saveslot_backups/${player.uuid}")
+        val files = dir.listFiles { f -> f.name.startsWith("slot$slot") && f.name.endsWith(".dat") }
+            ?.sortedByDescending { it.lastModified() }
+            ?: emptyList()
+
+        if (files.isEmpty()) {
+            source.sendFeedback({ Text.literal("§eNo backups found for slot $slot of ${player.name.string}") }, false)
+            return
+        }
+
+        source.sendFeedback({ Text.literal("§aBackups for ${player.name.string} slot $slot:") }, false)
+        files.forEach {
+            val ts = it.name.removePrefix("slot${slot}_").removeSuffix(".dat")
+            source.sendFeedback({ Text.literal("  §7→ $ts") }, false)
+        }
+    }
+
+    private fun registerLoadSaveslotBackupCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
+        dispatcher.register(
+            literal("loadsaveslotbackup")
+                .then(argument("slot", IntegerArgumentType.integer(0))
+                    .requires { it.hasPermissionLevel(4) }
+                    .executes { context ->
+                        val player = context.source.playerOrThrow
+                        val slot = IntegerArgumentType.getInteger(context, "slot")
+                        val uuid = player.uuid
+
+                        val backup = SaveSlotBackupManager.loadLatestBackup(uuid, slot)
+
+                        if (backup == null) {
+                            context.source.sendError(Text.literal("§cNo backup found for slot $slot."))
+                            return@executes 0
+                        }
+
+                        val dao = SaveSlotDAOImpl(Database.dataSource)
+
+                        val restoredSlot = PlayerSaveSlot(
+                            uuid = uuid,
+                            slot = slot,
+                            inventoryData = backup.inventory,
+                            pokemonData = backup.party,
+                            pcData = backup.pc,
+                            backpackData = backup.backpack,
+                            trinketData = backup.trinkets,
+                            lastSaved = System.currentTimeMillis()
+                        )
+
+                        dao.saveSlot(restoredSlot)
+
+                        context.source.sendFeedback(
+                            { Text.literal("§aRestored backup for slot $slot.") },
+                            false
+                        )
+
+                        deserializeInventory(player, backup.inventory)
+                        deserializeParty(player, backup.party)
+                        deserializePC(player, backup.pc)
+                        deserializeBackpack(player, backup.backpack)
+                        deserializeTrinkets(player, backup.trinkets)
+
+                        return@executes 1
+                    }
+                )
+        )
+    }
+
 
 
     private fun registerCompetitiveHandbookCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
