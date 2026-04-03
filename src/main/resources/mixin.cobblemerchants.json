@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BuyHandlerMixin",
-    "CobbleMerchantBankMixin",
+    "CobbleMerchantEntityMixin",
     "CobbleMerchantMixin",
     "NPCPlayerTextureSerializerMixin"
   ],
@@ -13,7 +13,6 @@
   },
   "client": [
     "BuyButtonRedirectMixin",
-    "CategoryEntryAccessor",
     "CategoryEntryMixin"
   ]
 }
