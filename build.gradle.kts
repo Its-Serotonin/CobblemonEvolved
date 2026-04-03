@@ -1,13 +1,11 @@
 
-
 plugins {
 	application
 	id("fabric-loom") version "1.10-SNAPSHOT"
 	id("maven-publish")
-	id("org.jetbrains.kotlin.jvm") version "2.1.20"
+	id("org.jetbrains.kotlin.jvm") version "2.2.20"
 	id("java")
-	kotlin("plugin.serialization") version "2.1.20"
-	//id("xyz.jpenilla.run-velocity") version "2.3.1"
+	kotlin("plugin.serialization") version "2.2.20"
 
 }
 
@@ -33,7 +31,6 @@ fabricApi {
 repositories {
 
 	mavenCentral()
-	//maven("https://maven.bai.lol")
 	maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
 	maven("https://maven.impactdev.net/repository/development/")
 	maven("https://oss.sonatype.org/content/repositories/snapshots")
@@ -41,11 +38,10 @@ repositories {
 	maven("https://maven.ladysnake.org/releases")
 	maven("https://jitpack.io")
 	maven("https://maven.architectury.dev/")
-	//maven("https://ladysnake.jfrog.io/artifactory/mods")
+	maven("https://maven.wispforest.io/releases")
 
-	//maven("https://maven.blamejared.com")
+
 	maven { url = uri("https://maven.fabricmc.net/") }
-	//maven { url = uri("https://repo.velocitypowered.com/repository/maven-public/") }
 	flatDir{
 		dirs("libs")
 	}
@@ -73,12 +69,14 @@ dependencies {
 	mappings("net.fabricmc:yarn:1.21.1+build.3:v2")
 	modImplementation("dev.architectury:architectury-fabric:16.1.4")
 
-	modImplementation("net.fabricmc:fabric-loader:0.16.10")
-	modImplementation("net.fabricmc:fabric-language-kotlin:1.13.2+kotlin.2.1.20")
-	modImplementation("net.fabricmc.fabric-api:fabric-api:0.116.1+1.21.1")
+	modImplementation("net.fabricmc:fabric-loader:0.18.5")
+	modImplementation("net.fabricmc:fabric-language-kotlin:1.13.10+kotlin.2.3.20")
+	modImplementation("net.fabricmc.fabric-api:fabric-api:0.116.9+1.21.1")
 	modImplementation(fabricApi.module("fabric-command-api-v2", "0.104.0+1.21.1"))
 
-	modImplementation("com.cobblemon:fabric:1.6.1+1.21.1")
+	modImplementation("com.cobblemon:fabric:1.7.3+1.21.1")
+	modImplementation("io.wispforest:accessories-fabric:1.1.0-beta.53+1.21.1")
+
 
 	shadeDeps("com.zaxxer:HikariCP:6.3.0")
 	shadeDeps("org.postgresql:postgresql:42.7.3")
@@ -87,34 +85,24 @@ dependencies {
 
 	compileOnly("net.luckperms:api:5.4")
 
-
-
-
 // === Local Mod Jars ===
-	modImplementation(files("libs/Jade-1.21.1-Fabric-15.10.1.jar"))
+	modImplementation(files("libs/Jade-1.21.1-Fabric-15.10.5.jar"))
 
 	modImplementation("dev.emi:trinkets:3.10.0")
 
-
-
-
-
-	modImplementation(files("libs/CobbleDollars-fabric-2.0.0+Beta-3+1.21.1.jar"))
-	modImplementation(files("libs/Cobblemon-Utility+-fabric-1.6.1.jar"))
+	modImplementation(files("libs/CobbleDollars-fabric-2.0.0+Beta-5.1+1.21.1.jar"))
+	modImplementation(files("libs/Cobblemon-Utility+-fabric-1.7.3.jar"))
 	modImplementation(files("libs/cobgyms-fabric-3.0.1+1.21.1.jar"))
-	modImplementation(files("libs/SimpleTMs-fabric-2.1.2.jar"))
-	modImplementation(files("libs/MythsAndLegends-fabric-1.7.2.jar"))
+	modImplementation(files("libs/SimpleTMs-fabric-2.3.3.jar"))
 
-	val backpacksJar = files("libs/sophisticatedbackpacks-1.21.1-3.23.4.1.96.jar")
+
+	val backpacksJar = files("libs/sophisticatedbackpacks-1.21.1-3.23.4.3.106.jar")
 	modImplementation(backpacksJar)
 	implementation(backpacksJar)
 	annotationProcessor(backpacksJar)
 
 	implementation("com.squareup.okhttp3:okhttp:4.12.0")
 	implementation("org.json:json:20240303")
-	//compileOnly("com.velocitypowered.api:velocity-api:3.4.0-SNAPSHOT")
-	//annotationProcessor("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
-	//modImplementation("vazkii.patchouli:Patchouli:1.21-87-FABRIC")
 
 	val devBackpackJar = file("libs/sophisticatedbackpacks-1.21.1-named.jar")
 	if (devBackpackJar.exists()) {
@@ -141,7 +129,7 @@ tasks.processResources {
 
 
 tasks.register<net.fabricmc.loom.task.RemapJarTask>("remapSophisticatedBackpacks") {
-	inputFile.set(file("libs/sophisticatedbackpacks-1.21.1-3.23.4.1.96.jar")) // Replace with your real file
+	inputFile.set(file("libs/sophisticatedbackpacks-1.21.1-3.23.4.3.106.jar"))
 	archiveClassifier.set("named")
 	addNestedDependencies.set(false)
 	targetNamespace.set("named")
@@ -150,7 +138,7 @@ tasks.register<net.fabricmc.loom.task.RemapJarTask>("remapSophisticatedBackpacks
 tasks.register<Copy>("copyRemappedBackpackJar") {
 	dependsOn("remapSophisticatedBackpacks")
 	from(layout.buildDirectory.map {
-		it.dir("libs").file("sophisticatedbackpacks-1.21.1-3.23.4.1.96-named.jar").asFile
+		it.dir("libs").file("sophisticatedbackpacks-1.21.1-3.23.4.3.106-named.jar").asFile
 	})
 	into("libs/")
 	rename { "sophisticatedbackpacks-1.21.1-named.jar" }
@@ -201,24 +189,6 @@ publishing {
 kotlin{
 	jvmToolchain(21)
 }
-/*
-sourceSets {
-	val main by getting
-	val server by creating {
-		compileClasspath += main.output
-		runtimeClasspath += main.output
-	}
-}*/
-/*
-tasks.withType<Jar>().configureEach {
-	doFirst {
-		from(
-			configurations.getByName("shadeDeps").filter {
-				it.name.contains("HikariCP") || it.name.contains("postgresql") || it.name.contains("minimessage")
-			}.map { zipTree(it) }
-		)
-	}
-}*/
 
 tasks.withType<Jar>().configureEach {
 	doFirst {

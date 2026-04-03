@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Its-Serotonin/CobblemonEvolved"
 	},
 	"license": "MIT",
 	"icon": "assets/cobblemonevolved/icon.png",
@@ -39,17 +39,15 @@
 	},
 	"mixins": [
 		"mixin.backpackfix.json",
-		"mixin.cobblemerchants.json",
-		"mixin.mythsandlegends.json"
+		"mixin.cobblemerchants.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.10",
+		"fabricloader": ">=0.18.5",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
-		"fabric-api": ">=0.116.1+1.21.1",
+		"fabric-api": ">=0.116.9+1.21.1",
 		"fabric-language-kotlin": "*",
-		"cobblemon": "1.6.1+1.21.1",
-		"trinkets": ">=3.10.0",
+		"cobblemon": ">=1.7.3+1.21.1",
 		"sophisticatedbackpacks": "*"
 	},
 	"suggests": {
