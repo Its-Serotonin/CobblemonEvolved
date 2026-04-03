@@ -2,7 +2,7 @@ package com.serotonin.common.merchant;
 
 
 
-import fr.harmex.cobbledollars.common.world.item.trading.ICobbleMerchant;
+import fr.harmex.cobbledollars.common.world.item.trading.CobbleDollarsShopHolder;
 import fr.harmex.cobbledollars.common.world.item.trading.shop.Bank;
 import fr.harmex.cobbledollars.common.world.item.trading.shop.Shop;
 
